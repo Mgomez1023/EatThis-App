@@ -3,19 +3,18 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem;
   text-align: center;
   height: 100%;
 }
 
 .main {
-  background-color: orange;
+  background-color: white;
   justify-items: center;
   width: 100%;
   height: 100%;
   padding: 1.5rem;
-  border-radius: 10px;
-  border: black 10px solid;
+  border: orange 15px solid;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
@@ -29,15 +28,14 @@
 .title-box {
   display:flex;
   flex-direction: column;
-  gap: 0.0rem;
+  gap: 1.0rem;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 30%;
   padding: 1rem;
   border-radius: 10px;
-  background-color: lightgreen;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background-color: white;
 }
 
 .heading {
@@ -66,14 +64,18 @@
   display:flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: lightblue;
-  justify-items: center;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 70%;
-  margin: 0em 0em 0em 0em;
-  padding: 1rem;
+  height: 40%;
+  margin: 3em 0em 0em 0em;
+  padding: 0.5rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.logo-box {
+  margin-top: 7em;;
 }
 
 .logo {
@@ -82,7 +84,7 @@
   height: 50%;
   will-change: filter;
   transition: filter 300ms;
-  scale: 100%;
+  scale: 75%;
   min-height: 145px;
   max-width: 300px;
 }
@@ -106,6 +108,51 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
+}
+
+.button-faded {
+  background-color: orange;
+  border: none;
+  border-radius: 50%;
+  width: clamp(80px, 20vw, 200px);
+  height: clamp(80px, 20vw, 200px);
+  color: #444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.03),
+    0 0 40px rgba(0, 0, 0, 0.02);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.button {
+  background-color: orange; /* Green */
+  border: none;
+  border-radius: 50%;
+
+  width: 40vw;
+  height: 40vw;
+  max-width: 200px;
+  max-height: 200px;
+  min-width: 80px;
+  min-height: 80px;
+
+  color: white;
+  box-shadow:
+    0 0 35px 25px rgba(255, 165, 0, 0.7),  /* large soft outer glow */
+    0 0 35px 30px rgba(255, 165, 0, 0.7); /* extended ambient fade */
+
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
 
 .text {

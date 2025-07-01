@@ -1,6 +1,6 @@
-import { useState } from 'react'
+ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import burgerLogo from './assets/burger_orange.jpg'
 import './App.css'
 
 function App() {
@@ -14,10 +14,10 @@ function App() {
   return (
    <>
     <div className="main">
-      <div className="title-box">
+      <div className="logo-box">
 
-        <div className="logo">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+        <div className="title-box">
+          <img src={burgerLogo} className="logo" alt="Vite logo" />
         </div>
 
         <h1 className="titleText">EatThis</h1>
@@ -25,13 +25,7 @@ function App() {
       </div>
 
       <div className="stepFormBackground"> 
-        <text className="heading">StepForm</text>
-
-        <div className="stepForm">
-
-        </div>
-
-        <button className="button" onClick={Click}>Buttonnnn</button>
+        <button className="button" onClick={Click}>Get Started</button>
       </div>
     </div>
 
