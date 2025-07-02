@@ -38,25 +38,27 @@ function App() {
 
   return (
    <>
-    <div className={`dropdown-drawer ${menuOpen ? 'open' : ''}`}>   
+      <div className={`dropdown-drawer ${menuOpen ? 'open' : ''}`}>   
 
-      <div className="drawer-header"> 
+        <div className="drawer-header"> 
 
-        <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
-          <img src={closeIcon} className="closeImg" alt="React logo" />
-        </button>
+          <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
+            <img src={closeIcon} className="closeImg" alt="React logo" />
+          </button>
 
-        <h1 className="titleText">EatThis</h1>
+          <h1 className="titleText">EatThis</h1>
 
-      </div>    
-      <div className="dropdown-content">
-        <ul>
-          <li onClick={() => alert('Profile clicked')}>Profile</li>
-          <li onClick={() => alert('Settings clicked')}>Settings</li>
-          <li onClick={() => alert('Logout clicked')}>Logout</li>
-        </ul>
+        </div>    
+        <div className="dropdown-content">
+          <ul>
+            <li onClick={() => alert('Profile clicked')}>Profile</li>
+            <li onClick={() => alert('Settings clicked')}>Settings</li>
+            <li onClick={() => alert('Logout clicked')}>Logout</li>
+          </ul>
+        </div>
       </div>
-    </div>
+
+
     <div className="topbar">
       <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
         <img src={hamburgerImg} className="MenuImg" alt="React logo" />
@@ -71,12 +73,11 @@ function App() {
         /*STEP 0 - HOME */
         {step === 0 && (
           <motion.section
-            key="home"
-            {...slide}
-            transition={{ duration: 0.5 }}
-            className="main"
+          key="home"
+          {...slide}
+          transition={{ duration: 0.5 }}
+          className="main"
           >
-            <div className="mainContent">    
               <div className="logo-box">
 
                 <div className="title-box">
@@ -88,19 +89,18 @@ function App() {
               </div>
 
               <div className="stepFormBackground"> 
-                <button className="button" onClick={next}>Get&nbsp;Started</button>
+                <button className="startButton" onClick={next}>Get&nbsp;Started</button>
               </div>
-            </div>
           </motion.section>
         )}
 
         /*STEP 1 - CRAVING */
         {step === 1 && (
           <motion.section
-            key="craving"
-            {...slide}
-            transition={{ duration: 0.5 }}
-            className="main"
+          key="craving"
+          {...slide}
+          transition={{ duration: 0.5 }}
+          className="main"
           >
             <div className="cravingContent">
               <h2 className="questionText">What Are You Craving?</h2>
@@ -111,7 +111,7 @@ function App() {
                   setAnswers({...answers, craving: e.target.value})
                 }
                 className="dropdown"
-              >
+                >
                 <option value="">Select a craving</option>
                 <option value="pizza">🍕 Pizza</option>
                 <option value="sushi">🍣 Sushi</option>
@@ -136,10 +136,10 @@ function App() {
         /*STEP 2 - BUDGET */
         {step === 2 && (  
           <motion.section
-            key="budget"
-            {...slide}
-            transition={{ duration: 0.5 }}
-            className="main"
+          key="budget"
+          {...slide}
+          transition={{ duration: 0.5 }}
+          className="main"
           >
             <div className="mainContent">
               <h2>What is your budget?</h2>
@@ -148,7 +148,7 @@ function App() {
                 value={answers.budget}
                 onChange={(e) => setAnswers({...answers, budget: e.target.value})}
                 placeholder="Enter your budget"
-              />
+                />
               <button className="button" onClick={next}>Next</button>
               <button className="button" onClick={back}>Back</button>
             </div>
@@ -156,10 +156,6 @@ function App() {
         )}
 
     </AnimatePresence>
-
-
-
-
 
 
    </>
