@@ -12,7 +12,7 @@
 }
 
 .main {
-  background: white;
+  background: rgb(255, 255, 255);
   position: relative;
   overflow: hidden;
   justify-items: center;
@@ -20,6 +20,28 @@
   height: 90%;
   max-height: 990px;
   padding: 0.0rem;
+}
+
+.restaurant-list {
+
+  border: '1px solid #ccc';
+  padding: '1rem';
+  margin-bottom: '1rem'; 
+  border-radius: '8px';
+
+}
+
+.restaurant-card {
+
+  border: '1px solid #ccc';
+  padding: '1rem';
+  margin-bottom: '1rem'; 
+  border-radius: '8px';
+
+}
+
+.textboi {
+  color: black;
 }
 
 .titleText {
@@ -260,6 +282,24 @@
   }
 }
 
+.results-page-results {
+  padding: 1em 2em 1em 2em;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  height: 90%;
+  max-height: 100vh;
+  overflow-y: auto;
+
+
+}
+
+.results-page-content {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  height: 90%;
+
+}
+
 .startButton {
   background-color: orange; /* Green */
   border: none;
@@ -285,6 +325,25 @@
   font-size: 2vh;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+.radiusSlider {
+  width: 90%;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  appearance: none;
+  outline: #ffa500 3px solid;
+  outline-offset: 2px;
+}
+
+.midText {
+  font-family:'Franklin Gothic-medium', 'Arial', Arial, sans-serif;
+  font-size: 2.5vh;
+  font-weight: 700;
+  line-height: 2em;
+  letter-spacing: 0.75vw;
+  color: orange;
 }
 
 .text {
