@@ -76,23 +76,20 @@ console.log(location);
         
 
         <div className="results-page-content">
+          <h2 className="midText">{ nearbyRestaurants.length } Restaurants within<br /> { radiusMeters / 1000 } kilometers of you</h2>
+            <div className="results-page-results">     
+              {nearbyRestaurants.length === 0 ? (
+                <p>No restaurants found or data not passed.</p>
+              ) : (
+                <RestaurantList restaurants={nearbyRestaurants} />
+              )}
 
-            <div className="results-page-results">
-            
-                <h2 className="midText">{ nearbyRestaurants.length } Restaurants within<br /> { radiusMeters / 1000 } kilometers of you</h2>
-
-                <div className="restaurant-list-container">
-                    {nearbyRestaurants.length === 0 ? (
-                      <p>No restaurants found or data not passed.</p>
-                    ) : (
-                      <RestaurantList restaurants={nearbyRestaurants} />
-                    )}
-                  </div>
             </div>
-
+          <div className="navButtonContainer">
             <button className="navButton" onClick={() => navigate('/')}>
                 Go Back
             </button>
+          </div>  
         </div>
     </>
     )  

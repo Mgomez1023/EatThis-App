@@ -8,13 +8,9 @@ const RestaurantList = ({ restaurants }) => {
   }
 
   return (
-    <div className="restaurant-list" style={{
-        marginTop: '1rem',
-        justifyContent: 'center',
-        justifyItems: 'center',
-        }}>
+    <div className="restaurant-list">
       {restaurants.map((restaurant, index) => (
-        <RestaurantCard key={index} restaurant={restaurant} />
+        <RestaurantCard key={restaurant.place_id || index} restaurant={restaurant} index={index} />
       ))}
     </div>
   );
