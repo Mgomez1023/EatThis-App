@@ -1,5 +1,4 @@
-import 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/App.css'
-import '../App.css'
+import '/src/App.css'
 
 const RestaurantCard = ({ restaurant }) => {
   return (
@@ -10,7 +9,7 @@ const RestaurantCard = ({ restaurant }) => {
       marginTop: '1rem',
       marginBottom: '1rem', 
       borderRadius: '8px',
-
+      width: '80%',
       }}>
       <h3>{restaurant.name}</h3>
       {restaurant.distance !== undefined && (

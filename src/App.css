@@ -28,6 +28,7 @@
   padding: '1rem';
   margin-bottom: '1rem'; 
   border-radius: '8px';
+  background-color: #696969;
 
 }
 
@@ -282,14 +283,25 @@
   }
 }
 
+.restaurant-lists-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 1rem;
+  padding-right: 0.5rem;
+}
+
 .results-page-results {
-  padding: 1em 2em 1em 2em;
+  display:flex;
+  flex-direction: column;
+  padding: 1rem;
   width: 100%;
   background-color: rgb(255, 255, 255);
-  height: 90%;
+  height: 100vh;
   max-height: 100vh;
   overflow-y: auto;
-
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 
 }
 

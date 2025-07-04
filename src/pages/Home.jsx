@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import React from 'react'
  import {motion, AnimatePresence} from 'framer-motion'
-import { useGeolocation } from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/utils/useGeolocation.js'
-import { haversineDistance } from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/utils/haversineDistance.js'
+import { useGeolocation } from '/src/utils/useGeolocation.js'
+import { haversineDistance } from '/src/utils/haversineDistance.js'
 import { useNavigate, Routes, Route } from 'react-router-dom'
 import { getNearbyRestaurants } from '../utils/getNearbyRestaurants'
-import restaurants from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/data/restaurants.json' // Assuming you have a JSON file with restaurant data
-import closeIcon from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/assets/close_icon.png'
-import searchImg from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/assets/Search.jpg'
-import hamburgerImg from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/assets/hamburger_menu.png'
-import burgerLogo from 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/assets/burger_orange.jpg'
-import 'C:/Users/not selected yet/Desktop/EatThis-App-1/src/App.css'
+import restaurants from '/src/data/restaurants.json' // Assuming you have a JSON file with restaurant data
+import closeIcon from '/src/assets/close_icon.png'
+import searchImg from '/src/assets/Search.jpg'
+import hamburgerImg from '/src/assets/hamburger_menu.png'
+import burgerLogo from '/src/assets/burger_orange.jpg'
+import '/src/App.css'
 
 
 function Home() {
