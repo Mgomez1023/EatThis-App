@@ -9,12 +9,12 @@ const RestaurantCard = ({ restaurant, index }) => {
       marginTop: '1rem',
       marginBottom: '1rem', 
       borderRadius: '8px',
-      width: '75%',
+      width: '100%',
 
       }}>
       <h3 className="text">{index + 1}. {restaurant.name}</h3>
       {restaurant.distance !== undefined && (
-        <p>Distance: {(restaurant.distance / 1000).toFixed(2)} km</p>
+        <p>Distance: {(restaurant.distance / 1000 * 0.621371).toFixed(2)} mi</p>
       )}
       {/* Add more details here as needed */}
     </div>

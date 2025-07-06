@@ -4,14 +4,14 @@ import React from 'react'
 import { useGeolocation } from '/src/utils/useGeolocation.js'
 import { haversineDistance } from '/src/utils/haversineDistance.js'
 import { useNavigate, Routes, Route } from 'react-router-dom'
-import { getNearbyRestaurants } from '../utils/getNearbyRestaurants'
+import { inferFoodType } from '/src/utils/inferFoodType.js'
 import restaurants from '/src/data/restaurants.json' // Assuming you have a JSON file with restaurant data
 import closeIcon from '/src/assets/close_icon.png'
 import searchImg from '/src/assets/Search.jpg'
 import hamburgerImg from '/src/assets/hamburger_menu.png'
 import burgerLogo from '/src/assets/burger_orange.jpg'
 import '/src/App.css'
-
+ 
 
 function Home() {
 
@@ -19,10 +19,10 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { location, error } = useGeolocation();
   const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
+  const [craving, setCraving] = useState('');
   const navigate = useNavigate();
 
-  
-const nearbyRestaurants = restaurants
+  const nearbyRestaurants = restaurants
   .map(r => {
     try {
       if (!r.geometry || !r.geometry.location) {
@@ -32,14 +32,21 @@ const nearbyRestaurants = restaurants
 
       const { lat, lng } = r.geometry.location;
       const distance = haversineDistance(location.lat, location.lng, lat, lng);
-      return { ...r, distance };
+      const category = inferFoodType(r.name);
+
+      return { ...r, distance, category };
     } catch (err) {
       console.error('Error mapping restaurant:', err);
       return null;
     }
   })
-      .filter(r => r && r.distance <= radiusMeters)
+      .filter(r => 
+        r && 
+        r.distance <= radiusMeters &&
+      (craving === "" || r.category === craving.toLowerCase())
+    )
       .sort((a, b) => a.distance - b.distance);
+
 
 
 
@@ -71,7 +78,8 @@ const nearbyRestaurants = restaurants
   }
 
   const handleSubmit = () => {
-    const nearbyRestaurants = restaurants
+    console.log("handleSubmit called");
+  const nearbyRestaurants = restaurants
   .map(r => {
     try {
       if (!r.geometry || !r.geometry.location) {
@@ -81,20 +89,29 @@ const nearbyRestaurants = restaurants
 
       const { lat, lng } = r.geometry.location;
       const distance = haversineDistance(location.lat, location.lng, lat, lng);
-      return { ...r, distance };
+      const category = inferFoodType(r.name);
+
+      return { ...r, distance, category };
     } catch (err) {
       console.error('Error mapping restaurant:', err);
       return null;
     }
   })
-      .filter(r => r && r.distance <= radiusMeters)
+      .filter(r => 
+        r && 
+        r.distance <= radiusMeters &&
+      (craving === "" || r.category === craving.toLowerCase())
+    )
       .sort((a, b) => a.distance - b.distance);
+
+
 
       console.log("Nearby before navigate:", nearbyRestaurants);
       navigate('/results', { 
         state: {
           radiusMeters,
           location,
+          craving,
           nearbyRestaurants
         }, 
       });
@@ -172,9 +189,9 @@ const nearbyRestaurants = restaurants
                   <h2 className="questionText">What Are You Craving?</h2>
 
                   <select 
-                    value={answers.craving}
+                    value={craving}
                     onChange={(e) => 
-                      setAnswers({...answers, craving: e.target.value})
+                      setCraving(e.target.value)
                     }
                     className="dropdown"
                     >
@@ -182,7 +199,7 @@ const nearbyRestaurants = restaurants
                     <option value="pizza">🍕 Pizza</option>
                     <option value="sushi">🍣 Sushi</option>
                     <option value="burgers">🍔 Burgers</option>
-                    <option value="tacos">🌮 Tacos</option>
+                    <option value="mexican">🌮 Tacos</option>
                     <option value="salad">🥗 Salad</option>
                     <option value="chinese">🥡 Chinese</option>
                     <option value="indian">🍛 Indian</option>
@@ -213,7 +230,7 @@ const nearbyRestaurants = restaurants
 
                     <h1 className="questionText">Within What Radius?</h1>
 
-                    <label className="textboi" htmlFor="radius">Search radius: { (radiusMeters / 1000).toFixed(1) } km</label>
+                    <label className="textboi" htmlFor="radius">Search radius: { (radiusMeters / 1000 * 0.621371).toFixed(0) } mi</label>
                     <input 
                       className="radiusSlider"
                       id="radius" 

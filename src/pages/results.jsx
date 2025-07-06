@@ -16,9 +16,8 @@ const [menuOpen, setMenuOpen] = useState(false)
 const navigate = useNavigate();
 const names = restaurantData.map((restaurants) => restaurants.name);
 const [setNames] = useState([]);
-
 const locationState = useLocation();
-const { radiusMeters, location} = locationState.state || {};
+const { radiusMeters, location, craving} = locationState.state || {};
 const nearbyRestaurants = locationState.state?.nearbyRestaurants || [];
 
 
@@ -26,8 +25,7 @@ const nearbyRestaurants = locationState.state?.nearbyRestaurants || [];
 console.log('radius Meters: ' + radiusMeters);
 console.log(names);
 console.log(location);
-
-
+console.log('Craving: ', craving);
 
 
   useEffect(() => {
@@ -76,7 +74,7 @@ console.log(location);
         
 
         <div className="results-page-content">
-          <h2 className="midText">{ nearbyRestaurants.length } Restaurants within<br /> { radiusMeters / 1000 } kilometers of you</h2>
+          <h2 className="midText">{ nearbyRestaurants.length } Restaurants within<br /> { (radiusMeters / 1000 * 0.621371).toFixed(0) } Miles of you</h2>
             <div className="results-page-results">     
               {nearbyRestaurants.length === 0 ? (
                 <p>No restaurants found or data not passed.</p>

@@ -24,10 +24,8 @@
 
 .restaurant-list {
 
-  border: 3px solid orange;
   width: 100%;
-  padding: 1rem;
-  
+  padding: 0.0rem;
   border-radius: 8px;
   background-color: #ffffff;
   justify-content: center;
@@ -312,14 +310,16 @@
 
   display:flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   overflow-y: auto;
   background-color: rgb(255, 255, 255);
   height: 75%;
-  margin-top: 1rem;
   align-content: center;
   align-items: center;
-  padding: 0 3rem 0 3rem;
+  justify-self: center;
+  padding: 0 2rem 0 2rem;
+  border: 5px orange solid;
+  border-radius: 10px;
 
 }
 
