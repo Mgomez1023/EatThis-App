@@ -249,7 +249,7 @@
   padding: 0;
   margin: 0;
   background: none;
-  width: 3.75em;
+  width: 3.25em;
 }
 
 .stepFormBackground {
@@ -314,7 +314,7 @@
   max-width: 600px;
   overflow-y: auto;
   background-color: rgb(255, 255, 255);
-  height: 75%;
+  height: 77%;
   align-content: center;
   align-items: center;
   justify-self: center;
@@ -328,7 +328,7 @@
 .results-page-content {
   width: 100%;
   background-color: rgb(255, 255, 255);
-  height: 90%;
+  height: 87%;
 }
 
 .startButton {
@@ -369,10 +369,11 @@
 }
 
 .midText {
+  margin-top: 0.5rem;
   font-family:'Franklin Gothic-medium', 'Arial', Arial, sans-serif;
   font-size: 2.5vh;
   font-weight: 700;
-  line-height: 2em;
+  line-height: 1.75em;
   letter-spacing: 0.75vw;
   color: orange;
 }
