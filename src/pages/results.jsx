@@ -77,7 +77,7 @@ console.log('Craving: ', craving);
           <h2 className="midText">{ nearbyRestaurants.length } Restaurants within<br /> { (radiusMeters / 1000 * 0.621371).toFixed(0) } Miles of you</h2>
             <div className="results-page-results">     
               {nearbyRestaurants.length === 0 ? (
-                <p>No restaurants found or data not passed.</p>
+                <p className="text">No restaurants found or data not passed.</p>
               ) : (
                 <RestaurantList restaurants={nearbyRestaurants} />
               )}
