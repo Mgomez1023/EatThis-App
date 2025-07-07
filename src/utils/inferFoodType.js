@@ -24,7 +24,7 @@ const keywordMap = {
   pizza: ["pizza", "pizzeria", "slice"],
   burgers: ["burger", "grill", "patty"],
   mexican: ["tacos", "burrito", "mex", "taqueria", "taco", "mexican"],
-  chinese: ["chinese", "szechuan", "wok"],
+  chinese: ["chinese", "szechuan", "wok", "asian"],
   japanese: ["sushi", "ramen", "izakaya"],
   korean: ["korean", "kimchi", "bibimbap"],
   thai: ["thai", "papaya", "somtum"],

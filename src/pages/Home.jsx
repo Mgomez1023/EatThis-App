@@ -20,8 +20,10 @@ function Home() {
   const { location, error } = useGeolocation();
   const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
   const [craving, setCraving] = useState('');
+  const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
 
+  /* 
   const nearbyRestaurants = restaurants
   .map(r => {
     try {
@@ -33,6 +35,7 @@ function Home() {
       const { lat, lng } = r.geometry.location;
       const distance = haversineDistance(location.lat, location.lng, lat, lng);
       const category = inferFoodType(r.name);
+      console.log('1st nearbyRestaurant', r.price_level);
 
       return { ...r, distance, category };
     } catch (err) {
@@ -42,13 +45,12 @@ function Home() {
   })
       .filter(r => 
         r && 
-        r.distance <= radiusMeters &&
-      (craving === "" || r.category === craving.toLowerCase())
+        (craving === "" || r.category === craving.toLowerCase()) &&
+        (r.price_level === selectedPriceLevel) &&
+        (radiusMeters === 5000 || r.distance <= radiusMeters)
     )
       .sort((a, b) => a.distance - b.distance);
-
-
-
+  */
 
 
   {/*STEP HANDLING */}
@@ -99,8 +101,9 @@ function Home() {
   })
       .filter(r => 
         r && 
-        r.distance <= radiusMeters &&
-      (craving === "" || r.category === craving.toLowerCase())
+        (!radiusMeters || r.distance <= radiusMeters) &&
+      (craving === "" || r.category === craving.toLowerCase()) &&
+      (!selectedPriceLevel || r.price_level === selectedPriceLevel)
     )
       .sort((a, b) => a.distance - b.distance);
 
@@ -222,7 +225,6 @@ function Home() {
               </motion.section>
             )}
 
-            {/*STEP 2 - BUDGET */}
             {step === 2 && (  
               <motion.section
               key="budget"
@@ -234,9 +236,61 @@ function Home() {
 
                   <div className="cravingContent">
 
-                    <h1 className="questionText">Within What Radius?</h1>
+                    <h1 className="questionText">How Much Do You Want To Spend?</h1>
 
-                    <label className="textboi" htmlFor="radius">Search radius: { (radiusMeters / 1000 * 0.621371).toFixed(0) } mi</label>
+                    <div className="price-selector">
+                      <div className="grid-buttons">
+                        {["1", "2", "3", "4"].map((val) => (
+                          <label key={val} className="price-btn">
+                            <input
+                              type="radio"
+                              name="price"
+                              value={val}
+                              checked={selectedPriceLevel === Number(val)}
+                              onChange={(e) => setSelectedPriceLevel(Number(e.target.value))}
+                            />
+                            {"$".repeat(Number(val))}
+                          </label>
+                        ))}
+                      </div>
+
+                        <label className="any-price-btn">
+                          <input
+                            type="radio"
+                            name="price"
+                            value=""
+                            checked={selectedPriceLevel === ""}
+                            onChange={() => setSelectedPriceLevel("")}
+                          />
+                          Any Price
+                        </label>
+
+                    <div className="buttonContainer">
+                      <button className="navButton" onClick={back}>Back</button>
+                        <button className="navButton" onClick={(next)}>Next</button>
+                    </div>
+                    
+                    </div>
+
+
+                  </div>
+                </div>
+              </motion.section>
+            )}
+            {/*STEP 2 - BUDGET */}
+            {step === 3 && (  
+              <motion.section
+              key="budget"
+              {...slide}
+              transition={{ duration: 0.5 }}
+              className="main"
+              >
+                <div className="main">
+          
+                  <div className="cravingContent">
+          
+                    <h1 className="questionText">Within What Radius?</h1>
+          
                     <input 
                       className="radiusSlider"
                       id="radius" 
@@ -247,24 +301,20 @@ function Home() {
                       value={radiusMeters}
                       onChange={(e) => setRadiusMeters(Number(e.target.value))} 
                       />
-
+                    <label className="radiusText" htmlFor="radius">{ (radiusMeters / 1000 * 0.621371).toFixed(0) } mi</label>
+          
                     <div className="buttonContainer">
                       <button className="navButton" onClick={back}>Back</button>
                         <button className="navButton" onClick={(handleSubmit)}>
-                          Show Results
+                          Search
                         </button>
                     </div>
-                    
-                    <p className="textboi"> Showing { nearbyRestaurants.length } </p>
-
-                    <p className="textboi"> Showing { nearbyRestaurants.length } </p>
-
-
+                                      
+          
                   </div>
                 </div>
               </motion.section>
             )}
-
         </AnimatePresence>
     </>
   )

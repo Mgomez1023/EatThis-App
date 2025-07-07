@@ -21,13 +21,6 @@ const { radiusMeters, location, craving} = locationState.state || {};
 const nearbyRestaurants = locationState.state?.nearbyRestaurants || [];
 
 
-
-console.log('radius Meters: ' + radiusMeters);
-console.log(names);
-console.log(location);
-console.log('Craving: ', craving);
-
-
   useEffect(() => {
     // Simulating loading data from a JSON file
     fetch('/restaurants.json')
