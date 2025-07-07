@@ -398,6 +398,13 @@
   display: none;
 }
 
+.price-btn:has(input:checked),
+.any-price-btn:has(input:checked) {
+  background-color: darkorange;
+  color: white;
+  border-color: white;
+}
+
 .any-price-btn {
   width: 100%;
   max-width: 400px;

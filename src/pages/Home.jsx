@@ -19,7 +19,7 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { location, error } = useGeolocation();
   const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
-  const [craving, setCraving] = useState('');
+  var [craving, setCraving] = useState('');
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
 
@@ -92,6 +92,10 @@ function Home() {
       const { lat, lng } = r.geometry.location;
       const distance = haversineDistance(location.lat, location.lng, lat, lng);
       const category = inferFoodType(r.name);
+
+      if (craving === "any") {
+        craving = "";
+      }
 
       return { ...r, distance, category };
     } catch (err) {
@@ -204,15 +208,15 @@ function Home() {
                     }
                     className="dropdown"
                     >
-                    <option value="">Select a craving</option>
+                    <option value="">Select a Craving</option>
                     <option value="pizza">🍕 Pizza</option>
-                    <option value="sushi">🍣 Sushi</option>
+                    <option value="chicken">🍗 Chicken</option>
                     <option value="burgers">🍔 Burgers</option>
                     <option value="mexican">🌮 Tacos</option>
-                    <option value="salad">🥗 Salad</option>
                     <option value="chinese">🥡 Chinese</option>
-                    <option value="indian">🍛 Indian</option>
-                    <option value="dessert">🍩 Dessert</option>
+                    <option value="sandwiches">🥪 Sandwiches</option>
+                    <option value="cafe">☕ Cafe</option>
+                    <option value="any">🤷‍♀️ I'm Not Sure</option>
 
                   </select>
 
