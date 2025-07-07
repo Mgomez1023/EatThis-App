@@ -357,6 +357,7 @@
   min-width: 80px;
   min-height: 80px;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .spinningRing {
@@ -401,7 +402,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 2vh;
-  margin: 0 auto;
+  margin: 4px 2px;
   cursor: pointer;
 }
 
