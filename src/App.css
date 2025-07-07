@@ -356,6 +356,7 @@
   max-height: 300px;
   min-width: 80px;
   min-height: 80px;
+  justify-content: center;
 }
 
 .spinningRing {
@@ -365,16 +366,14 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 8px solid none;
-  border-top: 8px solid rgb(255, 166, 0);
+  border: 16px solid none;
+  border-top: 35px solid rgb(255, 166, 0);
   animation: rotateRing 2.5s linear infinite;
   box-shadow:
-    0 0 35px 25px rgba(255, 166, 0, 0.5);  /* large soft outer glow */
+    10px 0 35px 25px rgba(221, 148, 13, 0.5);  /* large soft outer glow */
      /* extended ambient fade */
   z-index: 0;
   pointer-events: none;
-  justify-content: center;
-  justify-self: center;
 }
 
 
@@ -384,7 +383,7 @@
   border-radius: 50%;
 
   box-shadow:  /* large soft outer glow */
-    0 0 35px 30px rgba(255, 165, 0, 0.7); /* extended ambient fade */
+    10px 0 35px 25px rgb(255, 166, 0); /* extended ambient fade */
 
 
   width: 45vw;
@@ -402,7 +401,6 @@
   text-decoration: none;
   display: inline-block;
   font-size: 2vh;
-  margin: 0 auto;
   cursor: pointer;
 }
 
