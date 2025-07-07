@@ -373,6 +373,8 @@
      /* extended ambient fade */
   z-index: 0;
   pointer-events: none;
+  justify-content: center;
+  justify-self: center;
 }
 
 
