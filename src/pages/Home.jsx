@@ -129,7 +129,9 @@ function Home() {
                 <img src={closeIcon} className="closeImg" alt="React logo" />
               </button>
 
-              <h1 className="titleText">EatThis</h1>
+              <button className="logo-btn" onClick={(back)}>
+                <h1 className="titleText">EatThis</h1>
+              </button>
 
             </div>    
             <div className="dropdown-content">
@@ -171,9 +173,13 @@ function Home() {
 
                   </div>
 
-                  <div className="stepFormBackground"> 
+                  <div className="startButtonWrapper"> 
+                    <div className="spinningRing">
+                    </div>
                     <button className="startButton" onClick={next}>Get&nbsp;Started</button>
                   </div>
+
+
               </motion.section>
             )}
 

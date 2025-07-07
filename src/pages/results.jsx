@@ -65,7 +65,9 @@ console.log('Craving: ', craving);
                 <img src={hamburgerImg} className="MenuImg" alt="React logo" />
             </button>
             
-            <h1 className="titleText">EatThis</h1>
+            <button className="logo-btn" onClick={() => navigate('/')}>
+              <h1 className="titleText">EatThis</h1>
+            </button>
 
             <button className="search-btn" onClick={() => alert('Search clicked')} aria-label="Search"> 
                 <img src={searchImg} className="MenuImg" alt="React logo" />

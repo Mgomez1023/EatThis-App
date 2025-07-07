@@ -140,6 +140,10 @@
   height: 100%;
 }
 
+.logo-btn {
+  background: none;
+}
+
 .dropdown-drawer li {
   font-size: 18px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -335,10 +339,51 @@
   height: 87%;
 }
 
+@keyframes rotateRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.startButtonWrapper {
+  position: relative;
+  width: 45vw;
+  height: 45vw;
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 80px;
+  min-height: 80px;
+}
+
+.spinningRing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 8px solid none;
+  border-top: 8px solid rgb(255, 166, 0);
+  animation: rotateRing 2.5s linear infinite;
+  box-shadow:
+    0 0 35px 25px rgba(255, 166, 0, 0.5);  /* large soft outer glow */
+     /* extended ambient fade */
+  z-index: 0;
+  pointer-events: none;
+}
+
+
 .startButton {
   background-color: orange; /* Green */
   border: none;
   border-radius: 50%;
+
+  box-shadow:  /* large soft outer glow */
+    0 0 35px 30px rgba(255, 165, 0, 0.7); /* extended ambient fade */
+
 
   width: 45vw;
   height: 45vw;
@@ -348,9 +393,6 @@
   min-height: 80px;
 
   color: white;
-  box-shadow:
-    0 0 35px 25px rgba(255, 165, 0, 0.7),  /* large soft outer glow */
-    0 0 35px 30px rgba(255, 165, 0, 0.7); /* extended ambient fade */
 
   transition: box-shadow 0.3s ease, transform 0.2s ease;
   padding: 15px 32px;
@@ -361,6 +403,8 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+
+
 
 .radiusSlider {
   width: 90%;
