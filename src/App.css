@@ -401,6 +401,7 @@
   text-decoration: none;
   display: inline-block;
   font-size: 2vh;
+  margin: 0 auto;
   cursor: pointer;
 }
 
