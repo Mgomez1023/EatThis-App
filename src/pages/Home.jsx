@@ -106,7 +106,12 @@ function Home() {
   });
 
 
-
+  const priceDescriptions = {
+    "1": "Under $10",
+    "2": "$10 - $20",
+    "3": "$20 - $40",
+    "4": "Over $40"
+  };
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => Math.max(0, s-1));
   const reset = () => setStep(0);
@@ -300,18 +305,18 @@ function Home() {
 
                     <div className="price-selector">
                       <div className="grid-buttons">
-                        {["1", "2", "3", "4"].map((val) => (
-                          <label key={val} className="price-btn">
-                            <input
-                              type="radio"
-                              name="price"
-                              value={val}
-                              checked={selectedPriceLevel === Number(val)}
-                              onChange={(e) => setSelectedPriceLevel(Number(e.target.value))}
-                            />
-                            {"$".repeat(Number(val))}
-                          </label>
-                        ))}
+                      {["1", "2", "3", "4"].map((val) => (
+                        <label key={val} className="price-btn">
+                          <input
+                            type="radio"
+                            name="price"
+                            value={val}
+                            checked={selectedPriceLevel === Number(val)}
+                            onChange={(e) => setSelectedPriceLevel(Number(e.target.value))}
+                          />
+                          {priceDescriptions[val]}
+                        </label>
+                      ))}
                       </div>
 
                         <label className="any-price-btn">
