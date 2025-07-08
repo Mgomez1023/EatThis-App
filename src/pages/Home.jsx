@@ -19,10 +19,12 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { location, error } = useGeolocation();
   const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
-  var [setCraving] = useState('');
+  var [craving, setCraving] = useState('');
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
 
+  /* 
+  
   const cravings = [
     "any",
     "Pizza",
@@ -40,6 +42,8 @@ function Home() {
     "Bakery",
     "Cafe"
   ];
+  
+  */
   
   const displayCravings = [
     "🤷‍♀️ Any",
@@ -61,8 +65,6 @@ function Home() {
 
 
   const [cravingIndex, setCravingIndex] = useState(0); // default to "Any"
-  var craving = cravings[cravingIndex];
-  var displayCraving = displayCravings[cravingIndex];
 
 
   /* 
@@ -246,17 +248,36 @@ function Home() {
               >
                 <div className="cravingContent">
                   <h2 className="questionText">What Are You Craving?</h2>
+                
+                  <select 
+                    value={craving}
+                    
+                    onChange={(e) => 
+                      setCraving(e.target.value)
+                    }
 
-                  <input
-                    type="range"
-                    min="0"
-                    max={cravings.length - 1}
-                    step="1"
-                    value={cravingIndex}
-                    onChange={(e) => setCravingIndex(Number(e.target.value))}
-                    className="radiusSlider"
-                  />
-                  <label className="radiusText">{displayCraving}</label>
+                    className="dropdown"
+                    >
+                    <option value="">Select a Craving</option>
+                    <option value="pizza">🍕 Pizza</option>
+                    <option value="chicken">🍗 Chicken</option>
+                    <option value="burgers">🍔 Burgers</option>
+                    <option value="mexican">🌮 Mexican</option>
+                    <option value="chinese">🥡 Asian Cuisine</option>
+                    <option value="sandwiches">🥪 Sandwiches</option>
+                    <option value="barbecue">🍖 BBQ</option>
+                    <option value="hot dogs">🌭 Hot Dogs</option>
+                    <option value="seafood">🐟 Seafood</option>
+                    <option value="italian">🍝 Italian</option>
+                    <option value="indian">🧆 Indian</option>
+                    <option value="dessert">🍦 Dessert</option>
+                    <option value="bakery">🍰 Bakery</option>
+                    <option value="cafe">☕ Cafe</option>
+                    <option value="any">🤷‍♀️ I'm Not Sure</option>
+
+                  </select>
+
+                  <label className="radiusText">{craving}</label>
 
                   <div className="buttonContainer">
                     <button className="navButton" onClick={back}>Back</button>
