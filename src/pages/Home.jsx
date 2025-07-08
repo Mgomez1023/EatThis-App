@@ -175,6 +175,7 @@ function Home() {
           nearbyRestaurants
         }, 
       });
+      navigate(`/restaurant/${r.place_id}`, { state: { nearbyRestaurants } });
   };
 
   {/* MAIN APP DESIGNING */}
