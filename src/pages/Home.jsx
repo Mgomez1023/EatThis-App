@@ -277,8 +277,6 @@ function Home() {
 
                   </select>
 
-                  <label className="radiusText">{craving}</label>
-
                   <div className="buttonContainer">
                     <button className="navButton" onClick={back}>Back</button>
                     <button className="navButton" onClick={next}>Next</button>
