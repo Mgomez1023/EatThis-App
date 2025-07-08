@@ -59,6 +59,7 @@ const brandMap = {
   "mooyah": "burgers",
   "naf naf": "mediterranean",
   "newk’s eatery": "sandwiches",
+  "olive garden italian restaurant": "italian",
   "p.f. chang’s": "chinese",
   "pancheros": "mexican",
   "panda express": "chinese",
@@ -85,6 +86,7 @@ const brandMap = {
   "starbucks": "cafe",
   "steak ‘n shake": "burgers",
   "subway": "sandwiches",
+  "sbarro" : "pizza",
   "taco bell": "mexican",
   "taco john’s": "mexican",
   "the habit burger grill": "burgers",
@@ -101,28 +103,28 @@ const brandMap = {
 
 const keywordMap = {
   burgers: [
-    "burger", "grill", "flame", "patty", "shack", "bar", "bun", "sizzle",
+    "burger", "flame", "patty", "shack", "bar", "bun", "sizzle",
     "stack", "beef", "diner", "joint", "smash", "blaze", "bite"
   ],
   mexican: [
     "taco", "taqueria", "cantina", "grill", "casa", "cocina", "burrito", "fiesta",
-    "loco", "el", "salsa", "agave", "jalapeño", "pollo", "azteca"
+    "loco", "el", "salsa", "agave", "jalapeño", "pollo", "azteca", "mexican", "mex"
   ],
   chicken: [
     "chicken", "wing", "fried", "coop", "cluck", "hen", "shack", "roost",
     "tenders", "bucket", "broast", "yard", "crispy", "feather", "clucker"
   ],
   pizza: [
-    "pizza", "pizzeria", "slice", "pie", "oven", "crust", "brick", "fire",
-    "hut", "papa", "dough", "wood", "little", "pepperoni", "margherita"
+    "pizza", "pizzeria", "slice", "oven", "crust", "brick",
+    "hut", "papa", "dough", "wood", "pepperoni", "margherita"
   ],
   sandwiches: [
     "deli", "subs", "sandwich", "sub", "hoagie", "bagel", "panini", "grinder",
-    "hero", "roll", "shop", "express", "kitchen", "bistro", "works"
+    "hero", "roll", "express", "kitchen", "bistro", "works"
   ],
   cafe: [
-    "coffee", "café", "brew", "bean", "espresso", "roasters", "latte", "grind",
-    "java", "cup", "grounds", "house", "mug", "barista", "roast"
+    "coffee", "coffee bar", "café", "bean", "espresso", "roasters", "latte", "grind",
+    "java", "cup", "grounds", "mug", "barista", "roast"
   ],
   bakery: [
     "bakery", "bagel", "pastry", "donut", "cookie", "cake", "scone", "bakehouse",
@@ -134,23 +136,14 @@ const keywordMap = {
   ],
   chinese: [
     "wok", "dragon", "palace", "panda", "express", "bamboo", "dynasty",
-    "jade", "golden", "king", "lotus", "china", "imperial", "house"
-  ],
-  japanese: [
-    "sushi", "ramen", "izakaya", "yakitori", "donburi", "bento", "udon", "sashimi",
-    "tempura", "miso", "matcha", "tonkatsu", "teppan", "omakase", "nigiri"
-  ],
-  korean: [
+    "jade", "golden", "king", "lotus", "china", "imperial", "noodle", "rice",
     "korean", "kimchi", "bibimbap", "bulgogi", "soju", "banchan", "galbi", "gochujang",
     "kbbq", "mandu", "jjigae", "dak", "samgyeopsal", "sundubu", "gimbap"
   ],
-  thai: [
-    "thai", "papaya", "somtum", "basil", "curry", "lemongrass", "pad", "tom",
-    "yum", "rice", "noodle", "satay", "mango", "spice", "peanut"
-  ],
   indian: [
     "indian", "curry", "tandoor", "masala", "naan", "biriyani", "chaat", "dal",
-    "roti", "spice", "vindaloo", "korma", "paneer", "thali", "dosai"
+    "roti", "spice", "vindaloo", "korma", "paneer", "thali", "dosai", "pita", "gyro", "kebab", "taverna", "olive", "grill", "falafel", "mezze",
+    "shawarma", "souvlaki", "baklava", "zeus", "greek", "baba", "tzatziki"
   ],
   bbq: [
     "bbq", "barbecue", "smokehouse", "pit", "smoked", "ribs", "grill", "brisket",
@@ -160,17 +153,15 @@ const keywordMap = {
     "seafood", "oyster", "shrimp", "crab", "fish", "lobster", "clam", "grill",
     "dock", "net", "tide", "bay", "shells", "marina", "reef"
   ],
-  mediterranean: [
-    "pita", "gyro", "kebab", "taverna", "olive", "grill", "falafel", "mezze",
-    "shawarma", "souvlaki", "baklava", "zeus", "greek", "baba", "tzatziki"
-  ],
-  hawaiian: [
-    "poke", "aloha", "island", "hawaiian", "bowl", "surf", "luau", "pineapple",
-    "ohana", "wave", "volcano", "huli", "plate", "coconut", "shack"
-  ],
   hotdogs: [
     "dog", "dogs", "hot", "wiener", "frank", "sausage", "bun", "stand",
     "cart", "grill", "coney", "chicago", "corner", "shack", "king"
+  ],
+  italian: [
+    "pasta", "lasagna", "spaghetti", "ravioli", "gnocchi", "focaccia",
+    "bolognese", "parmigiana", "risotto", "carbonara", "alfredo", "tiramisu",
+    "trattoria", "osteria", "ristorante", "cucina", "italian", "napoli", "roma",
+    "toscana", "bella", "amore", "nonna", "da", "il", "la", "vino", "bruschetta"
   ]
 };
 
@@ -184,9 +175,18 @@ export function inferFoodType(name = "") {
   }
 
   // 2️⃣ keyword hit
-  for (const [type, words] of Object.entries(keywordMap)) {
-    if (words.some(w => lower.includes(w))) return type;
+  
+const skipPhrases = ['coffee bar', 'protein bar', 'salad bar']; // phrases to ignore
+
+for (const [type, words] of Object.entries(keywordMap)) {
+  // Skip if restaurant name includes any unwanted phrase
+  if (skipPhrases.some(phrase => lower.includes(phrase))) continue;
+
+  for (const w of words) {
+    const regex = new RegExp(`\\b${w}\\b`, 'i'); // match full word only
+    if (regex.test(lower)) return type;
   }
+}
 
   return "other";
 }

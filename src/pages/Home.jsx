@@ -19,9 +19,51 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { location, error } = useGeolocation();
   const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
-  var [craving, setCraving] = useState('');
+  var [setCraving] = useState('');
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
+
+  const cravings = [
+    "any",
+    "Pizza",
+    "Burgers",
+    "Mexican",
+    "Chicken",
+    "Sandwiches",
+    "BBQ",
+    "Chinese",
+    "Hot Dogs",
+    "Seafood",
+    "Italian",
+    "Indian",
+    "Dessert",
+    "Bakery",
+    "Cafe"
+  ];
+  
+  const displayCravings = [
+    "🤷‍♀️ Any",
+    "🍕 Pizza",
+    "🍔 Burgers",
+    "🌮 Mexican",
+    "🍗 Chicken",
+    "🥪 Sandwiches",
+    "🍖 BBQ",
+    "🥡 Asian Cuisine",
+    "🌭 Hot Dogs",
+    "🐟 Seafood",
+    "🍝 Italian",
+    "🧆 Indian",
+    "🍦 Dessert",
+    "🍰 Bakery",
+    "☕ Cafe"
+  ];
+
+
+  const [cravingIndex, setCravingIndex] = useState(0); // default to "Any"
+  var craving = cravings[cravingIndex];
+  var displayCraving = displayCravings[cravingIndex];
+
 
   /* 
   const nearbyRestaurants = restaurants
@@ -61,6 +103,8 @@ function Home() {
     dietaryRestrictions: '',
   });
 
+
+
   const next = () => setStep((s) => s + 1);
   const back = () => setStep((s) => Math.max(0, s-1));
   const reset = () => setStep(0);
@@ -79,6 +123,8 @@ function Home() {
     alert(`Clicked ${count + 1} times`)
   }
 
+
+  {/*SUBMIT HANDLING */}
   const handleSubmit = () => {
     console.log("handleSubmit called");
   const nearbyRestaurants = restaurants
@@ -201,25 +247,16 @@ function Home() {
                 <div className="cravingContent">
                   <h2 className="questionText">What Are You Craving?</h2>
 
-                  <select 
-                    value={craving}
-                    onChange={(e) => 
-                      setCraving(e.target.value)
-                    }
-                    className="dropdown"
-                    >
-                    <option value="">Select a Craving</option>
-                    <option value="pizza">🍕 Pizza</option>
-                    <option value="chicken">🍗 Chicken</option>
-                    <option value="burgers">🍔 Burgers</option>
-                    <option value="mexican">🌮 Tacos</option>
-                    <option value="chinese">🥡 Chinese</option>
-                    <option value="sandwiches">🥪 Sandwiches</option>
-                    <option value="cafe">☕ Cafe</option>
-                    <option value="any">🤷‍♀️ I'm Not Sure</option>
-
-                  </select>
-
+                  <input
+                    type="range"
+                    min="0"
+                    max={cravings.length - 1}
+                    step="1"
+                    value={cravingIndex}
+                    onChange={(e) => setCravingIndex(Number(e.target.value))}
+                    className="radiusSlider"
+                  />
+                  <label className="radiusText">{displayCraving}</label>
 
                   <div className="buttonContainer">
                     <button className="navButton" onClick={back}>Back</button>

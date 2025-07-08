@@ -69,7 +69,7 @@ const nearbyRestaurants = locationState.state?.nearbyRestaurants || [];
         
 
         <div className="results-page-content">
-          <h2 className="midText">{ nearbyRestaurants.length } Restaurants within<br /> { (radiusMeters / 1000 * 0.621371).toFixed(0) } Miles of you</h2>
+          <h2 className="midText">{ nearbyRestaurants.length } { craving } Restaurants within<br /> { (radiusMeters / 1000 * 0.621371).toFixed(0) } Miles of you</h2>
             <div className="results-page-results">     
               {nearbyRestaurants.length === 0 ? (
                 <p className="text">No restaurants found or data not passed.</p>
