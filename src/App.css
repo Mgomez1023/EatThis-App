@@ -90,7 +90,7 @@
   flex-direction: column;
   align-content: center;
   width: 100%;
-
+  margin: 0 auto;
 }
 
 .profile-container {
