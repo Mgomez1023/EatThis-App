@@ -9,12 +9,20 @@ import '../App.css';
 
 const RestaurantProfile = () => {
     const { id } = useParams();
-    const { state: restaurant } = useLocation();
     const toggleMenu = () => setMenuOpen(!menuOpen)
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+    const restaurant = location.state?.restaurant;
+    const restaurants = location.state?.restaurants;
+
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+    const goBack = () => {
+        navigate('/results', {
+            state: { restaurants }
+        });
+    };
 
     const handleClickyy = () => {
         navigate("/");
@@ -59,33 +67,60 @@ const RestaurantProfile = () => {
             </button>
             </div>
 
-            <h2 className="titleText">{restaurant.name}</h2>
+            <div>
+
+                <p className="titleText">{restaurant.name}</p>
+
+            </div>
+
+
+
+            <div className="page-container">
                 <div className="profile-container">
 
                     <div className="basicInfoContainer">
+                        <span className="info-label"> Info </span>
                         <div className="infoColumn">
                             <div className="addressBox">
-                                <p className="textboi">Address:</p>
-                                <p className="textboi">{restaurant.formatted_address}</p>
-                                <p className="textboi">Distance: {(restaurant.distance / 1609).toFixed(2)} mi</p>
+                                <p className="infoText">Address:</p>
+                                <p className="infoText">{restaurant.formatted_address}</p>
+                                <p className="infoText">{(restaurant.distance / 1609).toFixed(2)} mi away</p>
                             </div>
                             
                         </div>
 
                         <div className="infoColumn">
                             <div className="phoneNumberBox">
-                                <p className="textboi">Phone Number: {restaurant.formatted_phone_number}</p>
+                                <p className="infoText">Phone Number: {restaurant.formatted_phone_number}</p>
                             </div>
                             <div className="priceLevelBox">
-                                <p className="textboi">Price Level: { restaurant.price_level }</p>
+                                <p className="infoText">Price Level: { restaurant.price_level }</p>
 
                             </div>
                         </div>
                     </div>
 
+                    <div className="buttonContainer">
+
+                        <button
+                            className="access-button"
+                            onClick={() =>
+                                window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(restaurant.formatted_address)}`, '_blank')
+                            }
+                            >
+                            Get Directions 🚩
+                            </button>
+                        
+                        <a href={`tel:${restaurant.formatted_phone_number}`} className="access-button">
+                            Call 📞
+                        </a>
+
+                    </div>
 
 
                     <div className="hoursContainer">
+                        <p className="hour-label"> Hours </p>
+
                         <div className="hours-table">
                             <table>
                                 <thead>
@@ -106,6 +141,7 @@ const RestaurantProfile = () => {
                                         <td className="textboi">{day}</td>
                                         <td className="textboi">{openTime}</td>
                                         <td className="textboi">{closeTime}</td>
+
                                     </tr>
                                     );
                                 })}
@@ -120,11 +156,16 @@ const RestaurantProfile = () => {
 
 
                     </div>
+                </div>
 
 
 
+                </div>
                         {/* Add more fields as needed */}
                     <div className="site-link-container">
+
+                        <button onClick={goBack}>◀</button>
+
                         {restaurant.website ? (
                             <button
                             onClick={() => window.open(restaurant.website, '_blank')}
@@ -137,8 +178,6 @@ const RestaurantProfile = () => {
                             )}
 
                     </div>
-
-                </div>
 
         </div>
     </>

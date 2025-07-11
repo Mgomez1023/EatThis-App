@@ -167,6 +167,7 @@ function Home() {
 
 
       console.log("Nearby before navigate:", nearbyRestaurants);
+      localStorage.setItem('restaurants', JSON.stringify(nearbyRestaurants));
       navigate('/results', { 
         state: {
           radiusMeters,

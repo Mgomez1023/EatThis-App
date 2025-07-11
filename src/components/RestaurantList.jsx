@@ -10,7 +10,7 @@ const RestaurantList = ({ restaurants }) => {
   return (
     <div className="restaurant-list">
       {restaurants.map((restaurant, index) => (
-        <RestaurantCard key={restaurant.place_id || index} restaurant={restaurant} index={index} />
+        <RestaurantCard key={restaurant.place_id || index} restaurant={restaurant} index={index} restaurants={restaurants} />
       ))}
     </div>
   );

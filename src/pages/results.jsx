@@ -18,18 +18,32 @@ const names = restaurantData.map((restaurants) => restaurants.name);
 const [setNames] = useState([]);
 const locationState = useLocation();
 const { radiusMeters, location, craving} = locationState.state || {};
-const nearbyRestaurants = locationState.state?.nearbyRestaurants || [];
+const nearbyRestaurants = locationState.state?.nearbyRestaurants || [] || restaurants;
+const storedRestaurants = localStorage.getItem('restaurants');
+const restaurants = storedRestaurants ? JSON.parse(storedRestaurants) : [];
+
+const handleProfileClick = (restaurant) => {
+  navigate(`/profile/${restaurant.place_id}`, {
+    state: {
+      restaurant,
+      nearbyRestaurants // or whatever state you want to bring back
+    }
+  });
+};
 
 
-  useEffect(() => {
-    // Simulating loading data from a JSON file
-    fetch('/restaurants.json')
-      .then((res) => res.json())
-      .then((data) => {
-        const restaurantNames = data.map((r) => r.name);
-        setNames(restaurantNames);
-      });
-  }, []);
+
+useEffect(() => {
+  // Simulating loading data from a JSON file
+  fetch('/restaurants.json')
+  .then((res) => res.json())
+  .then((data) => {
+    const restaurantNames = data.map((r) => r.name);
+    console.log("nearby restaurants: ", nearbyRestaurants);
+    setNames(restaurantNames);
+  });
+  }, 
+    []);
 
   return (
     <>

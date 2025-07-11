@@ -2,12 +2,17 @@ import '/src/App.css'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-const RestaurantCard = ({ restaurant, index}) => {
+const RestaurantCard = ({ restaurant, index, restaurants,}) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/profile/${restaurant.place_id}`, { state: restaurant });
-  }
+    navigate(`/profile/${restaurant.place_id}`, { 
+      state: { 
+        restaurant, 
+        restaurants,
+       }
+    });
+  };
 
   /* 
       <div>
