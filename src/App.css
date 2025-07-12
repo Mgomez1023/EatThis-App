@@ -9,7 +9,7 @@
   text-align: center;
   height: 100%;
   max-height: 1200px;
-  border: orange 15px solid;
+  border: 15px orange solid;
 }
 
 .main {
@@ -96,7 +96,7 @@
 
 .profile-container {
   width: 90%;
-  max-width: 600px;
+  max-width: 1000px;
   padding: 0.5rem;
   height: 100vh;
   margin: 0 auto;
@@ -104,7 +104,11 @@
   margin-top: 1rem;
   justify-content: center;
   justify-items: center;
- 
+  -ms-overflow-style: none;
+}
+
+.profile-container::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Opera */
 }
 
 .basicInfoContainer {
@@ -167,7 +171,8 @@
 }
 
 .titleBox {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.5),
+   0px -4px 6px -1px rgba(0, 0, 0, 0.5);
 
 }
 
@@ -224,19 +229,67 @@
   font-weight: bold;
 }
 
-.reviewsContainer {
-  background-color: rgba(19, 112, 182, 0.644);
-  width: 90%;
-  height: 20%;
-  margin-bottom: 5rem;
-  margin: 0 auto;
+.slick-dots {
+  display: none;
 }
 
+.reviewsContainer {
+  position: relative;
+  width: 90%;
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: #fff;
+  border: 5px orange solid;
+  border-radius: 12px;
+}
+
+.reviewCard {
+  padding: 1rem;
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.reviewInfo p {
+  margin: 0.2rem 0;
+}
+
+.reviewText {
+  margin-top: 1rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: black;
+}
+
+.reviews-label {
+  position: absolute;
+  color: orange;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transform: translate(5px, -33px);
+  background-color: white;
+  height: 30px;
+  width: 115px;
+
+}
+
+
+
 .site-link-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3;
   width: 100%;
   height: 10vh;
   min-height: 100px;
-  padding: 1rem;
+  padding: 1rem 5% 1rem 5%;
   background-color: white;
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
   border-top: 5px orange solid;
@@ -244,9 +297,22 @@
   align-items: center;
 }
 
-.website-button {
+.profile-back-button {
+  flex: 0;
   border: 5px orange solid;
-  width: 70%;
+  border-radius: 10px;
+  color: orange;
+  background-color: white;
+  margin-bottom: 1rem;
+
+}
+
+.website-button {
+  flex: 1;
+  margin-left: .5rem;
+  margin-bottom: 1rem;
+  border: 5px orange solid;
+  width: 100%;
   border-radius: 10px;
   color: orange;
   background-color: white;
@@ -278,13 +344,24 @@
 .addressBox,
 .phoneNumberBox,
 .priceLevelBox,
-.websiteBox {
+.websiteBox,
+.categoryBox {
   background: #fff7f0;
   border: 2px solid orange;
   padding: 0.5rem;
   border-radius: 10px;
   font-size: 1.5vh;
 }
+
+.splitInfo{
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoryBox, .priceLevelBox {
+  width: 49.5%;
+}
+
 
 .cravingContent { 
   background-color: rgb(255, 255, 255);
@@ -328,6 +405,7 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
+  max-width: 1000px;
 }
 
 .navButtonContainer {
@@ -342,12 +420,42 @@
 }
 
 .navButton {
-  border: 3px solid orange;
+  border: 5px solid orange;
   border-radius: 10px;
   background-color: white;
   color: orange;
-  width: 40%;
+  font-size: 105%;
+  width: 50%;
 }
+
+.introTextContainer {
+  margin: 7rem 0;
+}
+
+.bubble {
+  padding: 0.6rem 0.9rem;
+  border: 2px solid #ccc;
+  border-radius: 9999px;
+  background-color: #fff;
+  font-size: 0.95rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  color: orange;
+  margin: 0 2px 0 2px;
+}
+
+.bubble:hover {
+  background-color: #f0f0f0;
+}
+
+.bubble.selected {
+  background-color: orange;
+  color: white;
+}
+
+
 
 .logoBox {
   background-color: black;
@@ -374,9 +482,55 @@
   transition: background-color 0.2s ease;
 }
 
+.restaurantCard {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 5px orange solid;
+  border-radius: 10px;
+  margin: 1rem 0;
+  box-shadow: 0px 0px 8px rgba(0,0,0, 0.5);
+
+}
+
+.arrow {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: orange;
+  margin-right: 1rem;
+}
+
+.restaurantButton {
+  background-color: rgb(255, 255, 255);
+  color: orange;
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1rem;
+  font-size: 100%;
+  cursor: pointer;
+
+}
+
+.buttonContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.restaurantButton h3 {
+  color: orange;
+  font-size: 150%;
+}
+
 .close-btn {
   position: absolute;
-  left: 1rem;
+  right: 1em;
   padding: 0;
   background: none;
   border: none;
@@ -384,6 +538,7 @@
 }
 
 .closeImg {
+  flex: 2;
   width: 30px;
   height: 30px;
   display:block;
@@ -428,10 +583,10 @@
 }
 
 .dropdown-drawer.open {
-  height: 35vh; /* You can make this 100vh if you want full screen */
+  height: 25vh; /* You can make this 100vh if you want full screen */
   border-bottom: orange 10px solid;
-
 }
+
 .dropdown-drawer {
   top: 0;
   left: 0;
@@ -468,7 +623,7 @@
   justify-content: space-between;
   width: 100%;
   height: 10%;
-  padding: 1rem 1.5rem 1rem 1.5rem;
+  padding: 1rem 2.5rem 1rem 2.5rem;
   background-color: white;
 }
 
@@ -541,7 +696,7 @@
   max-width: 600px;
   overflow-y: auto;
   background-color: rgb(255, 255, 255);
-  height: 77%;
+  height: 80%;
   align-content: center;
   align-items: center;
   justify-self: center;
@@ -555,7 +710,7 @@
 .results-page-content {
   width: 100%;
   background-color: rgb(255, 255, 255);
-  height: 87%;
+  height: 89%;
 }
 
 @keyframes rotateRing {
@@ -632,7 +787,6 @@
 .radioBox {
   display: flex;
   flex-direction: row;
-
 }
 
 .startButtonWrapper {
@@ -658,7 +812,7 @@
   border-top: 35px solid rgb(255, 166, 0);
   animation: rotateRing 2.5s linear infinite;
   box-shadow:
-    10px 0 35px 25px rgba(221, 148, 13, 0.5);  /* large soft outer glow */
+    10px 0 35px 35px rgba(221, 148, 13, 0.5);  /* large soft outer glow */
      /* extended ambient fade */
   z-index: 0;
   pointer-events: none;
@@ -672,8 +826,6 @@
 
   box-shadow:  /* large soft outer glow */
     10px 0 35px 25px rgb(255, 166, 0); /* extended ambient fade */
-
-
   width: 45vw;
   height: 45vw;
   max-width: 300px;
@@ -717,9 +869,11 @@ input[type="range"]::-webkit-slider-thumb {
 
 .midText {
   margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0 5rem 0 5rem;
   font-family:'Franklin Gothic-medium', 'Arial', Arial, sans-serif;
   font-size: 2.5vh;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.75em;
   letter-spacing: 0.75vw;
   color: orange;
@@ -727,8 +881,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 .text {
   font-size: 15px;
-  font-weight: bold;
-  color: red;
+  font-weight: 400;
+  color: rgb(123, 123, 123);
 }
 
 .card {

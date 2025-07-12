@@ -19,7 +19,7 @@ function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { location, error } = useGeolocation();
   const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
-  var [craving, setCraving] = useState('');
+  var [selectedCravings, setSelectedCravings] = useState([]);
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
 
@@ -44,29 +44,6 @@ function Home() {
   ];
   
   */
-  
-  const displayCravings = [
-    "🤷‍♀️ Any",
-    "🍕 Pizza",
-    "🍔 Burgers",
-    "🌮 Mexican",
-    "🍗 Chicken",
-    "🥪 Sandwiches",
-    "🍖 BBQ",
-    "🥡 Asian Cuisine",
-    "🌭 Hot Dogs",
-    "🐟 Seafood",
-    "🍝 Italian",
-    "🧆 Indian",
-    "🍦 Dessert",
-    "🍰 Bakery",
-    "☕ Cafe"
-  ];
-
-
-  const [cravingIndex, setCravingIndex] = useState(0); // default to "Any"
-
-
   /* 
   const nearbyRestaurants = restaurants
   .map(r => {
@@ -99,12 +76,6 @@ function Home() {
 
   {/*STEP HANDLING */}
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({
-    craving: '',
-    budget: '',
-    dietaryRestrictions: '',
-  });
-
 
   const priceDescriptions = {
     "1": "Under $10",
@@ -122,14 +93,33 @@ function Home() {
     exit: {x: '-100%', opacity: 0},
   };
 
+  const toggleCraving = (value) => {
+    if (selectedCravings.includes(value)) {
+      setSelectedCravings(selectedCravings.filter(c => c !== value));
+    } else if (selectedCravings.length < 3) {
+      setSelectedCravings([...selectedCravings, value]);
+    }
+};
+
 
   const toggleMenu = () => setMenuOpen(!menuOpen)
 
-  function Click() {
-    setCount((count) => count + 1)
-    alert(`Clicked ${count + 1} times`)
-  }
+  const handleClickyy = () => {
+      navigate("/");
+  };
 
+  const fadeInVariant = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.3,
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }),
+};
 
   {/*SUBMIT HANDLING */}
   const handleSubmit = () => {
@@ -146,9 +136,7 @@ function Home() {
       const distance = haversineDistance(location.lat, location.lng, lat, lng);
       const category = inferFoodType(r.name);
 
-      if (craving === "any") {
-        craving = "";
-      }
+
 
       return { ...r, distance, category };
     } catch (err) {
@@ -159,8 +147,8 @@ function Home() {
       .filter(r => 
         r && 
         (!radiusMeters || r.distance <= radiusMeters) &&
-      (craving === "" || r.category === craving.toLowerCase()) &&
-      (!selectedPriceLevel || r.price_level === selectedPriceLevel)
+        (selectedCravings.length === 0 || selectedCravings.includes(r.category)) &&
+        (!selectedPriceLevel || r.price_level === selectedPriceLevel)
     )
       .sort((a, b) => a.distance - b.distance);
 
@@ -172,7 +160,7 @@ function Home() {
         state: {
           radiusMeters,
           location,
-          craving,
+          selectedCravings,
           nearbyRestaurants
         }, 
       });
@@ -186,62 +174,91 @@ function Home() {
           <div className={`dropdown-drawer ${menuOpen ? 'open' : ''}`}>   
 
             <div className="drawer-header"> 
+                
+                <button style={{
+                background: 'none',
+                padding: '0px',
+                textDecoration: 'underline',
+                textDecorationColor: 'orange',
+                textDecorationThickness: '4px',
+                }}
+                
+                onClick={handleClickyy}>
+                    <h1 className="titleText">EatThis</h1>
+                </button>
 
-              <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
+                <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
                 <img src={closeIcon} className="closeImg" alt="React logo" />
-              </button>
+                </button>
 
-              <button className="logo-btn" onClick={(back)}>
-                <h1 className="titleText">EatThis</h1>
-              </button>
 
             </div>    
             <div className="dropdown-content">
-              <ul>
+                <ul>
                 <li onClick={() => alert('Profile clicked')}>Profile</li>
                 <li onClick={() => alert('Settings clicked')}>Settings</li>
                 <li onClick={() => alert('Logout clicked')}>Logout</li>
-              </ul>
+                </ul>
             </div>
-          </div>
+            </div>
 
 
-        <div className="topbar">
-          <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
-            <img src={hamburgerImg} className="MenuImg" alt="React logo" />
-          </button>
-          <button className="search-btn" onClick={() => alert('Search clicked')} aria-label="Search"> 
-            <img src={searchImg} className="MenuImg" alt="React logo" />
-          </button>
-        </div>
+            <div className="topbar">
+
+
+            <button style={{
+                background: 'none',
+                padding: '0px',
+                textDecoration: 'underline',
+                textDecorationColor: 'orange',
+                textDecorationThickness: '4px',
+            }}
+            onClick={handleClickyy}
+            >
+                <h1 className="titleText">EatThis</h1>
+            </button>
+
+            <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
+                <img src={hamburgerImg} className="MenuImg" alt="React logo" />
+            </button>
+
+
+
+
+
+            </div>
 
         <AnimatePresence mode="wait">
 
             {/*STEP 0 - HOME */}
             {step === 0 && (
               <motion.section
-              key="home"
-              {...slide}
-              transition={{ duration: 0.5 }}
-              className="main"
+                key="home"
+                initial="hidden"
+                animate="visible"
+                className="main"
               >
                   <div className="logo-box">
 
-                    <div className="title-box">
+                    <motion.div className="title-box" variants={fadeInVariant} custom={1}>
                       <img src={burgerLogo} className="logo" alt="Vite logo" />
-                    </div>
+                    </motion.div>
 
-                    <h1 className="titleText">EatThis</h1>
+                    <motion.div variants={fadeInVariant} custom={2}>
+                      <h1 className="titleText">EatThis</h1>
+                    </motion.div>
 
                   </div>
 
-                  <div className="startButtonWrapper"> 
+                  <motion.div className="startButtonWrapper" variants={fadeInVariant} custom={3}> 
                     <div className="spinningRing">
                     </div>
                     <button className="startButton" onClick={next}>Get&nbsp;Started</button>
-                  </div>
+                  </motion.div>
 
-
+                  <motion.div className="introTextContainer" variants={fadeInVariant} custom={4}>
+                    <p className="text">An app designed to help you make a food choice</p>
+                  </motion.div>
               </motion.section>
             )}
 
@@ -250,39 +267,39 @@ function Home() {
               <motion.section
               key="craving"
               {...slide}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.7 }}
               className="main"
               >
                 <div className="cravingContent">
                   <h2 className="questionText">What Are You Craving?</h2>
                 
-                  <select 
-                    value={craving}
-                    
-                    onChange={(e) => 
-                      setCraving(e.target.value)
-                    }
-
-                    className="dropdown"
-                    >
-                    <option value="">Select a Craving</option>
-                    <option value="pizza">🍕 Pizza</option>
-                    <option value="chicken">🍗 Chicken</option>
-                    <option value="burgers">🍔 Burgers</option>
-                    <option value="mexican">🌮 Mexican</option>
-                    <option value="chinese">🥡 Asian Cuisine</option>
-                    <option value="sandwiches">🥪 Sandwiches</option>
-                    <option value="barbecue">🍖 BBQ</option>
-                    <option value="hot dogs">🌭 Hot Dogs</option>
-                    <option value="seafood">🐟 Seafood</option>
-                    <option value="italian">🍝 Italian</option>
-                    <option value="indian">🧆 Indian</option>
-                    <option value="dessert">🍦 Dessert</option>
-                    <option value="bakery">🍰 Bakery</option>
-                    <option value="cafe">☕ Cafe</option>
-                    <option value="any">🤷‍♀️ I'm Not Sure</option>
-
-                  </select>
+                  <div className="bubbleGrid">
+                    {[
+                      { value: "pizza", label: "🍕 Pizza" },
+                      { value: "chicken", label: "🍗 Chicken" },
+                      { value: "burgers", label: "🍔 Burgers" },
+                      { value: "mexican", label: "🌮 Mexican" },
+                      { value: "chinese", label: "🥡 Asian Cuisine" },
+                      { value: "sandwiches", label: "🥪 Sandwiches" },
+                      { value: "barbecue", label: "🍖 BBQ" },
+                      { value: "hot dogs", label: "🌭 Hot Dogs" },
+                      { value: "seafood", label: "🐟 Seafood" },
+                      { value: "italian", label: "🍝 Italian" },
+                      { value: "indian", label: "🧆 Indian" },
+                      { value: "dessert", label: "🍦 Dessert" },
+                      { value: "bakery", label: "🍰 Bakery" },
+                      { value: "cafe", label: "☕ Cafe" },
+                      { value: "", label: "🤷‍♀️ I'm Not Sure" },
+                    ].map((item) => (
+                      <button
+                        key={item.value}
+                        className={`bubble ${selectedCravings.includes(item.value) ? 'selected' : ''}`}
+                        onClick={() => toggleCraving(item.value)}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
 
                   <div className="buttonContainer">
                     <button className="navButton" onClick={back}>Back</button>
@@ -347,7 +364,7 @@ function Home() {
             {/*STEP 2 - BUDGET */}
             {step === 3 && (  
               <motion.section
-              key="budget"
+              key="radius"
               {...slide}
               transition={{ duration: 0.5 }}
               className="main"

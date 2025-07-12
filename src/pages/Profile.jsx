@@ -5,6 +5,9 @@ import { formatTime } from '../utils/formatTime'
 import closeIcon from '../assets/close_icon.png';
 import searchImg from '../assets/Search.jpg';
 import hamburgerImg from '../assets/hamburger_menu.png';
+import ReviewCarousel from '../components/ReviewCarousel';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import '../App.css';
 
 const RestaurantProfile = () => {
@@ -19,9 +22,13 @@ const RestaurantProfile = () => {
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     const goBack = () => {
-        navigate('/results', {
-            state: { restaurants }
-        });
+        if (restaurants && restaurants.length > 0) {
+            console.log(restaurants);
+            localStorage.setItem("restaurants", JSON.stringify(restaurants));
+        } else {
+            console.warn("No restaurants to save!");
+        }
+        navigate('/results');
     };
 
     const handleClickyy = () => {
@@ -38,14 +45,23 @@ const RestaurantProfile = () => {
             <div className={`dropdown-drawer ${menuOpen ? 'open' : ''}`}>   
 
             <div className="drawer-header"> 
+                
+                <button style={{
+                background: 'none',
+                padding: '0px',
+                textDecoration: 'underline',
+                textDecorationColor: 'orange',
+                textDecorationThickness: '4px',
+                }}
+                
+                onClick={handleClickyy}>
+                    <h1 className="titleText">EatThis</h1>
+                </button>
 
                 <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
                 <img src={closeIcon} className="closeImg" alt="React logo" />
                 </button>
 
-                <button onClick={handleClickyy}>
-                    <h1 className="titleText">EatThis</h1>
-                </button>
 
             </div>    
             <div className="dropdown-content">
@@ -59,12 +75,28 @@ const RestaurantProfile = () => {
 
 
             <div className="topbar">
+
+
+            <button style={{
+                background: 'none',
+                padding: '0px',
+                textDecoration: 'underline',
+                textDecorationColor: 'orange',
+                textDecorationThickness: '4px',
+            }}
+            onClick={handleClickyy}
+            >
+                <h1 className="titleText">EatThis</h1>
+            </button>
+
             <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
                 <img src={hamburgerImg} className="MenuImg" alt="React logo" />
             </button>
-            <button className="search-btn" onClick={() => alert('Search clicked')} aria-label="Search"> 
-                <img src={searchImg} className="MenuImg" alt="React logo" />
-            </button>
+
+
+
+
+
             </div>
 
             <div className="titleBox">
@@ -94,8 +126,14 @@ const RestaurantProfile = () => {
                             <div className="phoneNumberBox">
                                 <p className="infoText">Phone Number: {restaurant.formatted_phone_number}</p>
                             </div>
-                            <div className="priceLevelBox">
-                                <p className="infoText">Price Level: { restaurant.price_level }</p>
+                            <div className="splitInfo">
+                                <div className="priceLevelBox">
+                                    <p className="infoText">Price Level: { restaurant.price_level }</p>
+                                </div>
+
+                                <div className="categoryBox">
+                                    <p className="infoText">Cateogry: { restaurant.category }</p>
+                                </div>
 
                             </div>
                         </div>
@@ -154,7 +192,7 @@ const RestaurantProfile = () => {
 
                     <div className="reviewsContainer">
 
-
+                        <ReviewCarousel reviews={(restaurant.reviews)} />
 
                     </div>
                 </div>
@@ -165,14 +203,14 @@ const RestaurantProfile = () => {
                         {/* Add more fields as needed */}
                     <div className="site-link-container">
 
-                        <button onClick={goBack}>◀</button>
+                        <button className="profile-back-button" onClick={goBack}>◀</button>
 
                         {restaurant.website ? (
                             <button
                             onClick={() => window.open(restaurant.website, '_blank')}
                             className="website-button"
                             >
-                                Visit Website
+                                Visit Website 🌍
                             </button>
                             ) : (
                                 <p>No website available</p>

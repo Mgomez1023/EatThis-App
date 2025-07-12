@@ -19,76 +19,95 @@ const [setNames] = useState([]);
 const locationState = useLocation();
 const { radiusMeters, location, craving} = locationState.state || {};
 const nearbyRestaurants = locationState.state?.nearbyRestaurants || [] || restaurants;
-const storedRestaurants = localStorage.getItem('restaurants');
-const restaurants = storedRestaurants ? JSON.parse(storedRestaurants) : [];
+var [restaurants, setRestaurants] = useState([]);
 
-const handleProfileClick = (restaurant) => {
-  navigate(`/profile/${restaurant.place_id}`, {
-    state: {
-      restaurant,
-      nearbyRestaurants // or whatever state you want to bring back
+    const handleClickyy = () => {
+        navigate("/");
+    };
+
+
+ useEffect(() => {
+    const stored = localStorage.getItem("restaurants");
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        setRestaurants(parsed);
+        console.log("Loaded from storage:", parsed);
+        restaurants = parsed;
+        console.log("restaurants: ", restaurants);
+      } catch (error) {
+        console.error("Failed to parse restaurants from storage", error);
+      }
+    } else {
+      console.warn("No restaurants found in storage");
     }
-  });
-};
+  }, []);
 
 
 
-useEffect(() => {
-  // Simulating loading data from a JSON file
-  fetch('/restaurants.json')
-  .then((res) => res.json())
-  .then((data) => {
-    const restaurantNames = data.map((r) => r.name);
-    console.log("nearby restaurants: ", nearbyRestaurants);
-    setNames(restaurantNames);
-  });
-  }, 
-    []);
 
   return (
     <>
           <div className={`dropdown-drawer ${menuOpen ? 'open' : ''}`}>   
 
             <div className="drawer-header"> 
+                
+                <button style={{
+                background: 'none',
+                padding: '0px',
+                textDecoration: 'underline',
+                textDecorationColor: 'orange',
+                textDecorationThickness: '4px',
+                }}
+                
+                onClick={handleClickyy}>
+                    <h1 className="titleText">EatThis</h1>
+                </button>
 
-              <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
+                <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
                 <img src={closeIcon} className="closeImg" alt="React logo" />
-              </button>
+                </button>
 
-              <h1 className="titleText">EatThis</h1>
 
             </div>    
             <div className="dropdown-content">
-              <ul>
+                <ul>
                 <li onClick={() => alert('Profile clicked')}>Profile</li>
                 <li onClick={() => alert('Settings clicked')}>Settings</li>
                 <li onClick={() => alert('Logout clicked')}>Logout</li>
-              </ul>
+                </ul>
             </div>
-          </div>
+            </div>
 
-        <div className="topbar">
+
+            <div className="topbar">
+
+
+            <button style={{
+                background: 'none',
+                padding: '0px',
+                textDecoration: 'underline',
+                textDecorationColor: 'orange',
+                textDecorationThickness: '4px',
+            }}
+            onClick={handleClickyy}
+            >
+                <h1 className="titleText">EatThis</h1>
+            </button>
+
             <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
                 <img src={hamburgerImg} className="MenuImg" alt="React logo" />
             </button>
-            
-            <button className="logo-btn" onClick={() => navigate('/')}>
-              <h1 className="titleText">EatThis</h1>
-            </button>
-
-            <button className="search-btn" onClick={() => alert('Search clicked')} aria-label="Search"> 
-                <img src={searchImg} className="MenuImg" alt="React logo" />
-            </button>
-        </div>
+            </div>
         
 
         <div className="results-page-content">
-          <h2 className="midText">{ nearbyRestaurants.length } { craving } Restaurants within<br /> { (radiusMeters / 1000 * 0.621371).toFixed(0) } Miles of you</h2>
-            <div className="results-page-results">     
-              {nearbyRestaurants.length === 0 ? (
+          <h2 className="midText">{ restaurants.length } { craving } Restaurants Found</h2>
+            <div className="results-page-results">
+              {restaurants.length === 0 ? (
                 <p className="text">No restaurants found or data not passed.</p>
               ) : (
-                <RestaurantList restaurants={nearbyRestaurants} />
+                <RestaurantList restaurants={restaurants} />
               )}
 
             </div>
