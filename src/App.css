@@ -9,7 +9,7 @@
   text-align: center;
   height: 100%;
   max-height: 1200px;
-  //border: 15px orange solid;
+  /* border: 15px orange solid; */
 }
 
 .main {
@@ -445,7 +445,7 @@
   transition: all 0.2s ease;
   white-space: nowrap;
   color: orange;
-  margin: 0 2px 0 2px;
+  margin: 2px 2px 2px 2px;
 }
 
 .bubble:hover {
@@ -585,7 +585,7 @@
 }
 
 .dropdown-drawer.open {
-  height: 25vh; /* You can make this 100vh if you want full screen */
+  height: 32vh; /* You can make this 100vh if you want full screen */
   border-bottom: orange 10px solid;
 }
 
@@ -630,11 +630,11 @@
   background-color: white;
 }
 
-.hamburger-btn, .search-btn {
+.hamburger-btn {
   padding: 0;
-  margin: 0;
+  margin: 0 0 0 0;
   background: none;
-  width: 3.25em;
+  width: 5vh
 }
 
 .stepFormBackground {
