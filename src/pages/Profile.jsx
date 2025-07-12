@@ -67,9 +67,10 @@ const RestaurantProfile = () => {
             </button>
             </div>
 
-            <div>
+            <div className="titleBox">
 
-                <p className="titleText">{restaurant.name}</p>
+                <p className="titleText"
+                >{restaurant.name}</p>
 
             </div>
 
@@ -108,7 +109,7 @@ const RestaurantProfile = () => {
                                 window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(restaurant.formatted_address)}`, '_blank')
                             }
                             >
-                            Get Directions 🚩
+                            Directions 🚩
                             </button>
                         
                         <a href={`tel:${restaurant.formatted_phone_number}`} className="access-button">
