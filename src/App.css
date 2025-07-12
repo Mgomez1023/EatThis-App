@@ -627,6 +627,12 @@
 }
 
 .topbar {
+  position: fixed; /* Makes it stick to the screen */
+  top: 0;           /* Stick to the very top */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
   display:flex;
   justify-content: space-between;
   width: 100%;
