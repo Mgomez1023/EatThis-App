@@ -132,7 +132,7 @@ const RestaurantProfile = () => {
                                 </div>
 
                                 <div className="categoryBox">
-                                    <p className="infoText">Cateogry: { restaurant.category }</p>
+                                    <p className="infoText">Category: {restaurant.category.charAt(0).toUpperCase() + restaurant.category.slice(1)}</p>
                                 </div>
 
                             </div>
