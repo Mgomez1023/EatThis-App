@@ -136,6 +136,7 @@ function Home() {
       const distance = haversineDistance(location.lat, location.lng, lat, lng);
       const category = inferFoodType(r.name);
 
+      console.log("selected", selectedCravings);
 
 
       return { ...r, distance, category };
@@ -147,8 +148,8 @@ function Home() {
       .filter(r => 
         r && 
         (!radiusMeters || r.distance <= radiusMeters) &&
-        (selectedCravings.length === 0 || selectedCravings.includes(r.category)) &&
-        (!selectedPriceLevel || r.price_level === selectedPriceLevel)
+        (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) &&
+        (!selectedPriceLevel || r.price_level <= selectedPriceLevel)
     )
       .sort((a, b) => a.distance - b.distance);
 
@@ -297,7 +298,7 @@ function Home() {
                       { value: "dessert", label: "🍦 Dessert" },
                       { value: "bakery", label: "🍰 Bakery" },
                       { value: "cafe", label: "☕ Cafe" },
-                      { value: "", label: "🤷‍♀️ I'm Not Sure" },
+                      { value: "any", label: "🤷‍♀️ I'm Not Sure" },
                     ].map((item) => (
                       <button
                         key={item.value}
