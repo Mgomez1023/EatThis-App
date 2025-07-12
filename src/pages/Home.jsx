@@ -380,6 +380,8 @@ function Home() {
                 <div className="main">
           
                   <div className="cravingContent">
+
+                    <div> </div>
           
                     <h1 className="questionText">Within What Radius?</h1>
           
