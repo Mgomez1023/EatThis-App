@@ -213,7 +213,7 @@ function Home() {
                 textDecorationColor: 'orange',
                 textDecorationThickness: '4px',
             }}
-            onClick={handleClickyy}
+            onClick={reset}
             >
                 <h1 className="titleText">EatThis</h1>
             </button>
@@ -253,7 +253,15 @@ function Home() {
                   <motion.div className="startButtonWrapper" variants={fadeInVariant} custom={3}> 
                     <div className="spinningRing">
                     </div>
-                    <button className="startButton" onClick={next}>Get&nbsp;Started</button>
+
+                    <button className="startButton" onClick={next}>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      Get&nbsp;Started
+                    </button>
+
                   </motion.div>
 
                   <motion.div className="introTextContainer" variants={fadeInVariant} custom={4}>

@@ -433,6 +433,7 @@
 
 .introTextContainer {
   margin: 7rem 0;
+  padding: 0 5rem 0 5rem;
 }
 
 .bubble {
@@ -658,13 +659,12 @@
 .logo {
   justify-items: center;
   background: none;
-  width: 66%;
-  height: 50%;
+  width: 40%;
+  height: 30%;
   will-change: filter;
   transition: filter 300ms;
   scale: 75%;
-  min-height: 145px;
-  max-width: 300px;
+
 }
 
 @keyframes logo-spin {
@@ -795,8 +795,8 @@
 
 .startButtonWrapper {
   position: relative;
-  width: 45vw;
-  height: 45vw;
+  width: 30vw;
+  height: 30vw;
   max-width: 300px;
   max-height: 300px;
   min-width: 80px;
@@ -807,16 +807,14 @@
 
 .spinningRing {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   border: 16px solid none;
-  border-top: 35px solid rgb(255, 166, 0);
+  border-top: 20px solid rgb(255, 166, 0);
   animation: rotateRing 2.5s linear infinite;
   box-shadow:
-    10px 0 35px 35px rgba(221, 148, 13, 0.5);  /* large soft outer glow */
+    10px 0 35px 0px rgba(221, 148, 13, 0.5);  /* large soft outer glow */
      /* extended ambient fade */
   z-index: 0;
   pointer-events: none;
@@ -830,8 +828,8 @@
 
   box-shadow:  /* large soft outer glow */
     10px 0 35px 25px rgb(255, 166, 0); /* extended ambient fade */
-  width: 45vw;
-  height: 45vw;
+  width: 30vw;
+  height: 30vw;
   max-width: 300px;
   max-height: 300px;
   min-width: 80px;
@@ -840,13 +838,14 @@
   color: white;
 
   transition: box-shadow 0.3s ease, transform 0.2s ease;
-  padding: 15px 32px;
+  padding: 0;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 2vh;
+  font-size: 100%;
   margin: 4px 2px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 
@@ -896,3 +895,5 @@ input[type="range"]::-webkit-slider-thumb {
 .read-the-docs {
   color: #696969;
 }
+
+
