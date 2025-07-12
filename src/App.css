@@ -9,7 +9,7 @@
   text-align: center;
   height: 100%;
   max-height: 1200px;
-  border: 15px orange solid;
+  //border: 15px orange solid;
 }
 
 .main {
@@ -349,6 +349,10 @@
   padding: 0.5rem;
   border-radius: 10px;
   font-size: 1.5vh;
+  }
+
+.priceLevelBox {
+  align-content: center;
 }
 
 .splitInfo{
