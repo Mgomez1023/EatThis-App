@@ -117,7 +117,11 @@ const RestaurantProfile = () => {
                             <div className="addressBox">
                                 <p className="infoText">Address:</p>
                                 <p className="infoText">{restaurant.formatted_address}</p>
-                                <p className="infoText">{(restaurant.distance / 1609).toFixed(2)} mi away</p>
+                                <p style={{
+                                    fontWeight: '600',
+                                    fontSize: '1.0rem'
+                                }}
+                                className="infoText">{(restaurant.distance / 1609).toFixed(2)} mi away</p>
                             </div>
                             
                         </div>
@@ -161,31 +165,37 @@ const RestaurantProfile = () => {
                         <p className="hour-label"> Hours </p>
 
                         <div className="hours-table">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th className="textboi">Day</th>
-                                    <th className="textboi">Open</th>
-                                    <th className="textboi">Close</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {restaurant.opening_hours?.periods?.map((period, index) => {
-                                    const day = daysOfWeek[period.open.day];
-                                    const openTime = formatTime(period.open.time);
-                                    const closeTime = formatTime(period.close.time);
-
-                                    return (
-                                    <tr key={index}>
-                                        <td className="textboi">{day}</td>
-                                        <td className="textboi">{openTime}</td>
-                                        <td className="textboi">{closeTime}</td>
-
+                            {restaurant.opening_hours?.periods ? (
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th className="textboi">Day</th>
+                                        <th className="textboi">Open</th>
+                                        <th className="textboi">Close</th>
                                     </tr>
-                                    );
-                                })}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    {restaurant.opening_hours?.periods?.map((period, index) => {
+                                        const day = daysOfWeek[period.open.day];
+                                        const openTime = formatTime(period.open.time);
+                                        const closeTime = formatTime(period.close.time);
+
+                                        return (
+                                        <tr key={index}>
+                                            <td className="textboi">{day}</td>
+                                            <td className="textboi">{openTime}</td>
+                                            <td className="textboi">{closeTime}</td>
+
+                                        </tr>
+                                        );
+                                    })}
+                                    </tbody>
+                                </table>
+
+                            ) : (
+                                <p className="infoText">No Hours Provided</p>
+                            )}
+
 
                         </div>
                     </div>
