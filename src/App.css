@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 #root {
+  --colorp: #f9f9f9;
+  --colorp2: #fff;
+  --colora: orange;
+  --colora2: #537fe7;
+  --colorbody: #1e1e1e;
+  --colors: #333;
   position: relative;
   width: 100%;
   max-width: 1000px;
@@ -904,6 +910,13 @@ input[type="range"]::-webkit-slider-thumb {
   color: rgb(123, 123, 123);
 }
 
+.selectText {
+  color: rgb(123, 123, 123);
+  font-size: 20px;
+  line-height: 0.5rem;
+  margin-bottom: 2rem;
+}
+
 .card {
   padding: 2em;
 }
@@ -912,4 +925,29 @@ input[type="range"]::-webkit-slider-thumb {
   color: #696969;
 }
 
+.moodyButton {
+  cursor: pointer;
+  background: var(orange);
+  text-decoration: none;
+  font: var(--links);
+  padding: 12px 20px;
+  border-radius: 8px;
+  color: var(--colora);
+  transition: var(--transition);  
 
+}
+
+.moody{
+  box-shadow: 0 0 40px var(--colora);
+}
+.moody:hover {
+  box-shadow: 0 0 60px var(--colora);
+}
+.moody-fill{
+  box-shadow: 0 0 16px var(--colora);
+  background: var(--colora);
+  color: var(--colorbody);
+}
+.moody-fill:hover {
+  box-shadow: 0 0 24px var(--colora);
+}

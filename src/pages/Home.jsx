@@ -255,13 +255,10 @@ function Home() {
                     <div className="spinningRing">
                     </div>
 
-                    <button className="startButton" onClick={next}>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      Get&nbsp;Started
-                    </button>
+                      <button className="startButton" onClick={next}>
+                        Get&nbsp;Started
+                      </button>
+
 
                   </motion.div>
 
@@ -281,6 +278,8 @@ function Home() {
               >
                 <div className="cravingContent">
                   <h2 className="questionText">What Are You Craving?</h2>
+
+                  <p className="selectText">(Choose up to 3)</p>
                 
                   <div className="bubbleGrid">
                     {[
@@ -384,7 +383,7 @@ function Home() {
 
                     <div> </div>
           
-                    <h1 className="questionText">Within What Radius?</h1>
+                    <h1 className="questionText">How Far Do You Want To Drive?</h1>
           
                     <input 
                       className="radiusSlider"
