@@ -121,9 +121,13 @@ function Home() {
   }),
 };
 
+const toggle = () => {
+  document.body.classList.toggle("light");
+}
+
   {/*SUBMIT HANDLING */}
   const handleSubmit = () => {
-    console.log("handleSubmit called");
+  console.log("handleSubmit called");
   const nearbyRestaurants = restaurants
   .map(r => {
     try {
@@ -214,7 +218,7 @@ function Home() {
                 textDecorationColor: 'orange',
                 textDecorationThickness: '4px',
             }}
-            onClick={reset}
+            onClick={toggle}
             >
                 <h1 className="titleText">EatThis</h1>
             </button>
@@ -279,7 +283,7 @@ function Home() {
                 <div className="cravingContent">
                   <h2 className="questionText">What Are You Craving?</h2>
 
-                  <p className="selectText">(Choose up to 3)</p>
+                  <p className="text">(Choose up to 3)</p>
                 
                   <div className="bubbleGrid">
                     {[
