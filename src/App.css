@@ -398,13 +398,16 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  overflow-y: auto;
   justify-items: center;
   justify-content: flex-start;
   align-items: center;
   gap: 1.5rem;
   width: 90%;
-  height: 60%;
-  margin: 3vh 2vw;
+  height: 90%;
+  margin-top: 3vh;
+  margin-left: auto;
+  margin-right: auto;
   padding: 2vh;
   border-radius: 10px;
 }
