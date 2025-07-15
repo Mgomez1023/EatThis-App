@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatTime } from '../utils/formatTime'
 import closeIcon from '../assets/close_icon.png';
-import searchImg from '../assets/Search.jpg';
 import hamburgerImg from '../assets/hamburger_menu.png';
 import ReviewCarousel from '../components/ReviewCarousel';
 import "slick-carousel/slick/slick.css";

@@ -96,7 +96,7 @@
   height: 30%;
   padding: 1rem;
   border-radius: 10px;
-  background-color: var(--bg-dark);
+  background-color: var(--bg);
 }
 
 .page-container {
@@ -409,6 +409,7 @@
   margin-left: auto;
   margin-right: auto;
   padding: 2vh;
+  padding-top: 10%;
   border-radius: 10px;
 }
 
@@ -688,6 +689,8 @@
 .logo-box {
   margin-top: 0em;
   margin-bottom: 5em;
+  background-color: var(--bg);
+  border-radius: 15px;
 }
 
 .logo {
@@ -747,7 +750,7 @@
 
 .results-page-content {
   width: 100%;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--bg);
   height: 89%;
 }
 
@@ -761,8 +764,8 @@
 }
 
 .radiusText {
-  color: orange;
-  font-size: 2.5vh;
+  color: var(--orange);
+  font-size: 24px;
   font-weight: 500;
 }
 
@@ -780,6 +783,7 @@
   gap: 1rem;
   width: 100%;
   max-width: 400px;
+  margin-top: 1rem;
 }
 
 .price-btn, .any-price-btn {
@@ -787,8 +791,8 @@
   justify-content: center;
   align-items: center;
   background-color: var(--bg-light);
-  color: orange;
-  border: 3px orange solid;
+  color: var(--orange);
+  border: 3px var(--orange) solid;
   font-weight: bold;
   padding: 1rem;
   border-radius: 10px;
@@ -845,10 +849,10 @@
   height: 100%;
   border-radius: 50%;
   border: 16px solid none;
-  border-top: 20px solid rgb(255, 166, 0);
+  border-top: 20px solid var(--orange);
   animation: rotateRing 2.5s linear infinite;
   box-shadow:
-    10px 0 35px 0px rgba(221, 148, 13, 0.5);  /* large soft outer glow */
+    0px 0 0px 0px rgba(212, 156, 51, 0.5);  /* large soft outer glow */
      /* extended ambient fade */
   z-index: 0;
   pointer-events: none;
@@ -856,12 +860,12 @@
 
 
 .startButton {
-  background-color: orange; /* Green */
+  background-color: var(--orange); /* Green */
   border: none;
   border-radius: 50%;
 
   box-shadow:  /* large soft outer glow */
-    10px 0 35px 25px rgb(255, 166, 0); /* extended ambient fade */
+    10px 0 35px 25px var(--orange); /* extended ambient fade */
   width: 30vw;
   height: 30vw;
   max-width: 300px;
@@ -883,37 +887,85 @@
 }
 
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 16px;
-  width: 16px;
-  background: orange;
-  border-radius: 50%;
-  cursor: pointer;
-}
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 30px;
+    width: 16px;
+    background: var(--bg-light);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
 
 .radiusSlider {
+  -webkit-appearance: none;
+  appearance: none;
   width: 90%;
   height: 30px;
-  background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  appearance: none;
-  outline: #ffa500 3px solid;
+  outline: var(--orange) 3px solid;
   outline-offset: 2px;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
+  background: transparent;
+  cursor: pointer;
 }
 
+.radiusSlider::-webkit-slider-runnable-track {
+  height: 30px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.radiusSlider::-webkit-slider-thumb {
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  background: linear-gradient(to right, var(--orange) 50%, white 50%);
+  border: 2px solid var(--orange);
+  cursor: pointer;
+  margin-top: 0px;
+  position: relative;
+  z-index: 2;
+}
+
+.radiusSlider::-moz-range-thumb {
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+  background: linear-gradient(to right, var(--orange) 50%, white 50%);
+  border: 2px solid var(--orange);
+  cursor: pointer;
+}
+
+.radiusSlider::-moz-range-track {
+  height: 30px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.home-content {
+  background-color: var(--bg);
+  border-radius: 15px;
+  padding-bottom: 1px;
+  width: 80%;
+  max-height: 95%;
+}
+
+
+
+
 .midText {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
-  padding: 0 3rem 0 3rem;
+  padding: 1rem 3rem 0 3rem;
   font-family:'Franklin Gothic-medium', 'Arial', Arial, sans-serif;
   font-size: 2.5vh;
   font-weight: 600;
   line-height: 1.75em;
   letter-spacing: 0.75vw;
-  color: orange;
+  color: var(--orange);
+  background-color: var(--bg);
 }
 
 .text {
@@ -937,29 +989,4 @@ input[type="range"]::-webkit-slider-thumb {
   color: #696969;
 }
 
-.moodyButton {
-  cursor: pointer;
-  background: var(orange);
-  text-decoration: none;
-  font: var(--links);
-  padding: 12px 20px;
-  border-radius: 8px;
-  color: var(--colora);
-  transition: var(--transition);  
 
-}
-
-.moody{
-  box-shadow: 0 0 40px var(--colora);
-}
-.moody:hover {
-  box-shadow: 0 0 60px var(--colora);
-}
-.moody-fill{
-  box-shadow: 0 0 16px var(--colora);
-  background: var(--colora);
-  color: var(--colorbody);
-}
-.moody-fill:hover {
-  box-shadow: 0 0 24px var(--colora);
-}

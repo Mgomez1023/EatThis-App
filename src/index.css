@@ -3,7 +3,7 @@
 :root {
   --bg-dark: hsl(0, 0%, 90%);
   --bg: hsl(0, 0%, 95%);
-  --bg-light: hsl(0, 0%, 100%);
+  --bg-light: hsl(0, 0%, 95%);
   --text: hsl(0, 0%, 5%);
   --text-muted: hsl(0, 0%, 30%);  
 

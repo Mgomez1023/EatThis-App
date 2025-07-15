@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom'
 import RestaurantList from '../components/RestaurantList'
 import '../App.css'
 import closeIcon from '../assets/close_icon.png'
-import searchImg from '../assets/Search.jpg'
 import hamburgerImg from '../assets/hamburger_menu.png'
 import restaurantData from "../data/restaurants.json"
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import React from 'react'
  import {motion, AnimatePresence} from 'framer-motion'
 import { useGeolocation } from '/src/utils/useGeolocation.js'
@@ -7,9 +7,8 @@ import { useNavigate, Routes, Route } from 'react-router-dom'
 import { inferFoodType } from '/src/utils/inferFoodType.js'
 import restaurants from '/src/data/restaurants.json' // Assuming you have a JSON file with restaurant data
 import closeIcon from '/src/assets/close_icon.png'
-import searchImg from '/src/assets/Search.jpg'
 import hamburgerImg from '/src/assets/hamburger_menu.png'
-import burgerLogo from '/src/assets/burger_orange.jpg'
+import burgerLogo from '/src/assets/burger_orange.png'
 import '/src/App.css'
  
 
@@ -18,61 +17,10 @@ function Home() {
   const [count, setCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const { location, error } = useGeolocation();
-  const [radiusMeters, setRadiusMeters] = useState(5000); // Default radius 5km
+  const [radiusMeters, setRadiusMeters] = useState(1000); // Default radius 5km
   var [selectedCravings, setSelectedCravings] = useState([]);
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
-
-  /* 
-  
-  const cravings = [
-    "any",
-    "Pizza",
-    "Burgers",
-    "Mexican",
-    "Chicken",
-    "Sandwiches",
-    "BBQ",
-    "Chinese",
-    "Hot Dogs",
-    "Seafood",
-    "Italian",
-    "Indian",
-    "Dessert",
-    "Bakery",
-    "Cafe"
-  ];
-  
-  */
-  /* 
-  const nearbyRestaurants = restaurants
-  .map(r => {
-    try {
-      if (!r.geometry || !r.geometry.location) {
-        console.warn('Invalid restaurant object:', r);
-        return null;
-      }
-
-      const { lat, lng } = r.geometry.location;
-      const distance = haversineDistance(location.lat, location.lng, lat, lng);
-      const category = inferFoodType(r.name);
-      console.log('1st nearbyRestaurant', r.price_level);
-
-      return { ...r, distance, category };
-    } catch (err) {
-      console.error('Error mapping restaurant:', err);
-      return null;
-    }
-  })
-      .filter(r => 
-        r && 
-        (craving === "" || r.category === craving.toLowerCase()) &&
-        (r.price_level === selectedPriceLevel) &&
-        (radiusMeters === 5000 || r.distance <= radiusMeters)
-    )
-      .sort((a, b) => a.distance - b.distance);
-  */
-
 
   {/*STEP HANDLING */}
   const [step, setStep] = useState(0);
@@ -110,20 +58,40 @@ function Home() {
 
   const fadeInVariant = {
   hidden: { opacity: 0, y: 10 },
-  visible: (i = 0) => ({
+    visible: (i = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
       delay: i * 0.3,
       duration: 0.6,
       ease: "easeOut"
-    }
-  }),
-};
+      }
+    }),
+  } ;
 
-const toggle = () => {
-  document.body.classList.toggle("light");
-}
+  const toggle = () => {
+    document.body.classList.toggle("light");
+  }
+
+  const sliderRef = useRef();
+  const min = 1000;
+  const max = 50000;
+
+  useEffect(() => {
+    const percent = ((radiusMeters - min) / (max - min)) * 100;
+    if (sliderRef.current) {
+      sliderRef.current.style.background = `
+        linear-gradient(
+          to right,
+          var(--orange) 0%,
+          var(--orange) ${percent}%,
+          white ${percent}%,
+          white 100%
+        )`;
+    }
+  }, [radiusMeters]);
+
+
 
   {/*SUBMIT HANDLING */}
   const handleSubmit = () => {
@@ -243,6 +211,8 @@ const toggle = () => {
                 animate="visible"
                 className="main"
               >
+                <div className="home-content">
+
                   <div className="logo-box">
 
                     <motion.div className="title-box" variants={fadeInVariant} custom={1}>
@@ -269,6 +239,8 @@ const toggle = () => {
                   <motion.div className="introTextContainer" variants={fadeInVariant} custom={4}>
                     <p className="text">An app designed to help you make a food choice</p>
                   </motion.div>
+
+                </div>
               </motion.section>
             )}
 
@@ -391,10 +363,10 @@ const toggle = () => {
           
                     <input 
                       className="radiusSlider"
-                      id="radius" 
+                      ref={sliderRef} 
                       type="range" 
-                      min="1000" 
-                      max="50000" 
+                      min={min}
+                      max={max}
                       step="1000" 
                       value={radiusMeters}
                       onChange={(e) => setRadiusMeters(Number(e.target.value))} 
