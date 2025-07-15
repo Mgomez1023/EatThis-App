@@ -37,16 +37,25 @@
 }
 
 .mainProfile {
-  background-color: var(--colorp);
+  background-color: var(--bg);
   position: relative;
   overflow: hidden;
   justify-items: center;
   justify-content: center;
   display: flex;
   flex-direction:column;
-  width: 100%;
-  height: 100%;
+  margin: 0 auto;
+  width: 80%;
+  height: 77%;
   max-height: 1200px;
+  border: var(--border-card);
+  border-top: 1px solid var(--highlight);
+  background: var(--gradient);
+  box-shadow: var(--shadow);
+  background-color: var(--bg);
+  border-radius: 15px;
+
+
 }
 
 .restaurant-list {
@@ -104,7 +113,6 @@
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  margin-bottom: 7rem;
 }
 
 .profile-container {
@@ -132,7 +140,6 @@
   margin-bottom: 2rem;
   margin: 0 auto;
   width: 90%;
-  border: 5px orange solid;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -145,18 +152,20 @@
 .info-label {
   position: absolute;
   background-color: white;
-  color: orange;
+  color: var(--orange);
   font-weight: bold;
   font-size: 1.5rem;
   width: 75px;
-  height: 30px;
-  transform: translate(20px, -38px);
+  height: 50px;
+  transform: translate(0px, -28px);
+  background: none;
 }
 
 .infoText {
-  color: orange;
+  color: var(--orange);
   font-family: var(--font);
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 200;
 }
 
 .hour-label {
@@ -176,6 +185,13 @@
   border-radius: 10px;
   width: 43%;
   padding: 0.5rem;
+
+  border: var(--border-card);
+  border-top: 1px solid var(--highlight);
+  background: var(--gradient);
+  box-shadow: var(--shadow);
+  background-color: var(--bg);
+  border-radius: 15px;
 }
 
 .buttonContainer {
@@ -186,7 +202,8 @@
 .titleBox {
   box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.5),
    0px -4px 6px -1px rgba(0, 0, 0, 0.5);
-
+  align-self: stretch;
+  padding-top: 1rem;
 }
 
 .hoursContainer {
@@ -372,7 +389,15 @@
   padding: 0.5rem;
   border-radius: 10px;
   font-size: 1.5vh;
-  }
+
+  border: var(--border-card);
+  border-top: 1px solid var(--highlight);
+  background: var(--gradient);
+  box-shadow: var(--shadow);
+  background-color: var(--bg);
+  border-radius: 15px;
+
+}
 
 .priceLevelBox {
   align-content: center;
@@ -453,6 +478,7 @@
   justify-items: center;
   width: 100%;
   height: 10vh;
+  margin-top: auto;
 
 }
 
@@ -758,7 +784,7 @@
 
 .results-page-content {
   width: 100%;
-  background-color: var(--bg);
+  background-color: none;
   height: 90%;
 }
 
@@ -932,11 +958,19 @@
   background: none;
 }
 
+.radiusSlider:focus {
+  background: none; /* Prevent white flicker */
+}
+
+.radiusSlider:active {
+  background: none; /* Prevent white on click */
+}
+
 .radiusSlider::-webkit-slider-thumb {
   height: 30px;
   width: 30px;
   border-radius: 10px;
-  background: linear-gradient(to right, var(--orange) 50%, var(--bg) 50%);
+  background: var(--orange);
   border: 2px solid var(--orange);
   cursor: pointer;
   margin-top: 0px;
@@ -985,7 +1019,7 @@
   line-height: 1.75em;
   letter-spacing: 0.75vw;
   color: var(--orange);
-  background-color: var(--bg);
+  background-color: none;
 }
 
 .text {

@@ -37,7 +37,7 @@
   --bg: hsl(0 0% 5%);
   --bg-light: hsl(0 0% 10%);
   --text: hsl(0 0% 95%);
-  --text-muted: hsl(0 0% 30%);
+  --text-muted: hsl(0 0% 40%);
   --border: hsl(0 0% 30%);
   --border-card: solid 1px var(--border);
   --gradient: linear-gradient(0deg, var(--bg), var(--bg-light));

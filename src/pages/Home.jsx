@@ -11,6 +11,7 @@ import hamburgerImg from '/src/assets/hamburger_menu.png'
 import burgerLogo from '/src/assets/burger_orange.png'
 import logoFull from '/src/assets/logo-full.png'
 import '/src/App.css'
+import '../index.css'
  
 
 function Home() {
@@ -81,21 +82,9 @@ function Home() {
   const percent = ((radiusMeters - min) / (max - min)) * 100;
   
   const sliderStyle = {
-  background: `linear-gradient(to right, var(--orange) ${percent}%, var(--bg) ${percent}%)`
-};
-  useEffect(() => {
+  background: `linear-gradient(to right, var(--orange) ${percent}%, transparent ${percent}%)`
+  };
 
-    if (sliderRef.current) {
-      sliderRef.current.style.background = `
-        linear-gradient(
-          to right,
-          var(--orange) 0%,
-          var(--orange) ${percent}%,
-          white ${percent}%,
-          white 100%
-        )`;
-    }
-  }, [radiusMeters]);
 
 
 
