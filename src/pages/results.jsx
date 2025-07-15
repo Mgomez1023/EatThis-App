@@ -6,6 +6,7 @@ import '../App.css'
 import closeIcon from '../assets/close_icon.png'
 import hamburgerImg from '../assets/hamburger_menu.png'
 import restaurantData from "../data/restaurants.json"
+import logoFull from "../assets/logo-full.png"
 
 
 function results() {
@@ -20,9 +21,13 @@ const { radiusMeters, location, craving} = locationState.state || {};
 const nearbyRestaurants = locationState.state?.nearbyRestaurants || [] || restaurants;
 var [restaurants, setRestaurants] = useState([]);
 
-    const handleClickyy = () => {
-        navigate("/");
-    };
+  const handleClickyy = () => {
+      navigate("/");
+  };
+
+  const toggle = () => {
+  document.body.classList.toggle("dark");
+  } 
 
 
  useEffect(() => {
@@ -89,9 +94,11 @@ var [restaurants, setRestaurants] = useState([]);
                 textDecorationColor: 'orange',
                 textDecorationThickness: '4px',
             }}
-            onClick={handleClickyy}
+            onClick={toggle}
             >
-                <h1 className="titleText">EatThis</h1>
+
+              <img src={logoFull} className="logoFull" alt="React logo" />
+
             </button>
 
             <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 

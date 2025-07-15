@@ -71,15 +71,20 @@ function Home() {
   } ;
 
   const toggle = () => {
-    document.body.classList.toggle("light");
+    document.body.classList.toggle("dark");
   }
 
   const sliderRef = useRef();
   const min = 1000;
   const max = 50000;
-
+  
+  const percent = ((radiusMeters - min) / (max - min)) * 100;
+  
+  const sliderStyle = {
+  background: `linear-gradient(to right, var(--orange) ${percent}%, var(--bg) ${percent}%)`
+};
   useEffect(() => {
-    const percent = ((radiusMeters - min) / (max - min)) * 100;
+
     if (sliderRef.current) {
       sliderRef.current.style.background = `
         linear-gradient(
@@ -373,6 +378,7 @@ function Home() {
                       max={max}
                       step="1000" 
                       value={radiusMeters}
+                      style={sliderStyle}
                       onChange={(e) => setRadiusMeters(Number(e.target.value))} 
                       />
                     <label className="radiusText" htmlFor="radius">{ (radiusMeters / 1000 * 0.621371).toFixed(0) } mi</label>

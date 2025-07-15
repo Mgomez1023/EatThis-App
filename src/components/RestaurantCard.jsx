@@ -28,7 +28,11 @@ const RestaurantCard = ({ restaurant, index, restaurants,}) => {
             {restaurant.distance !== undefined && (
               <>
 
-                <p>Distance: {(restaurant.distance / 1000 * 0.621371).toFixed(2)} mi</p>
+                <p className="text" style={{
+                  textSize: '15px',
+                  color: 'var(--orange)',
+
+                }}>Distance: {(restaurant.distance / 1000 * 0.621371).toFixed(2)} mi</p>
               
               </>
             )}
