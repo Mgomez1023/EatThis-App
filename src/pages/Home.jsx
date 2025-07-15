@@ -9,6 +9,7 @@ import restaurants from '/src/data/restaurants.json' // Assuming you have a JSON
 import closeIcon from '/src/assets/close_icon.png'
 import hamburgerImg from '/src/assets/hamburger_menu.png'
 import burgerLogo from '/src/assets/burger_orange.png'
+import logoFull from '/src/assets/logo-full.png'
 import '/src/App.css'
  
 
@@ -188,8 +189,11 @@ function Home() {
             }}
             onClick={toggle}
             >
-                <h1 className="titleText">EatThis</h1>
+
+              <img src={logoFull} className="logoFull" alt="React logo" />
+
             </button>
+
 
             <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
                 <img src={hamburgerImg} className="MenuImg" alt="React logo" />

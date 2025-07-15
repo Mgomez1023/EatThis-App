@@ -17,6 +17,8 @@
   --text: hsl(0 0% 5%);
   --text-muted: hsl(0 0% 30%);
 
+  --font: ""
+
   position: relative;
   width: 100%;
   max-width: 1000px;
@@ -78,7 +80,7 @@
 }
 
 .titleText {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family:'Franklin Gothic Medium';
   font-size: 5vh;
   font-weight: bold;
   color: var(--orange);
@@ -414,7 +416,7 @@
 }
 
 .questionText {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family:'Franklin Gothic Medium';
   font-size: 4.25vh;
   font-weight: bold;
   color: rgb(255, 140, 0);
@@ -512,7 +514,7 @@
 
 .dropdown-drawer li {
   font-size: 18px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Franklin Gothic Medium';
   color: orange;
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -659,11 +661,11 @@
 .topbar {
   display:flex;
   justify-content: space-between;
-  width: 100%;
+  width: 80%;
   height: 10%;
   min-height: 75px;
-  padding: 1rem 2rem 0 2rem;
-  margin: 0 0 1rem 0;
+  padding: 1rem 2% 0 2%;
+  margin: 0 auto 1rem auto;
   background-color: var(--bg-dark);
 }
 
@@ -671,7 +673,7 @@
   padding: 0;
   margin: 0 0 0 0;
   background: none;
-  width: 5vh
+  width: 4vh
 }
 
 .stepFormBackground {
@@ -981,6 +983,11 @@
   font-size: 20px;
   line-height: 0.5rem;
   margin-bottom: 2rem;
+}
+
+.logoFull {
+  height: 50%;
+  width: 100%;
 }
 
 .card {
