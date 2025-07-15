@@ -743,7 +743,7 @@
   align-content: center;
   align-items: center;
   justify-self: center;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
   margin: 0 auto;
 
   border: var(--border-card);
