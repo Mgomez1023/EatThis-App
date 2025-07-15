@@ -54,7 +54,7 @@
   width: 100%;
   padding: 0.0rem;
   border-radius: 8px;
-  background-color: var(--bg-dark);
+  background: none;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -539,9 +539,8 @@
   border-radius: 10px;
   margin: 1rem 0;
   box-shadow: 0px 0px 8px rgba(0,0,0, 0.5);
-  background: var(--gradient);
+  background: none;
   box-shadow: var(--shadow);
-  background-color: var(--bg);
 
 }
 
@@ -553,7 +552,7 @@
 }
 
 .restaurantButton {
-  background-color: var(--bg-light);
+  background: none;
   color: var(--orange);
   width: 100%;
   text-align: left;
@@ -672,11 +671,11 @@
 .topbar {
   display:flex;
   justify-content: space-between;
+  align-content: center;
   width: 100%;
   height: 10%;
   min-height: 75px;
-  /*padding: 1rem 2% 0 2%;*/
-  padding: 0 2rem 0 2rem;
+  padding: 0 2rem 0rem 2rem;
   background-color: var(--bg-dark);
 }
 
@@ -740,16 +739,21 @@
   width: 90%;
   max-width: 600px;
   overflow-y: auto;
-  background-color: var(--bg-dark);
   height: 77%;
   align-content: center;
   align-items: center;
   justify-self: center;
-  padding: 0 2rem;
+  padding: 0 3rem;
   margin: 0 auto;
-  border: 5px var(--orange) solid;
-  border-radius: 10px;
+
+  border: var(--border-card);
+  border-top: 1px solid var(--highlight);
+  background: var(--gradient);
   box-shadow: var(--shadow);
+  background-color: var(--bg);
+  border-radius: 15px;
+
+
 }
 
 .results-page-content {
@@ -794,7 +798,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg-light);
+  background: none;
   color: var(--orange);
   border: 3px var(--orange) solid;
   font-weight: bold;

@@ -262,10 +262,13 @@ function Home() {
               className="main"
               >
                 <div className="cravingContent">
-                  <h2 className="questionText">What Are You Craving?</h2>
+                  
+                  <div>
+                    <h2 className="questionText">What Are You Craving?</h2>
 
-                  <p className="text">(Choose up to 3)</p>
-                
+                    <p className="text">(Choose up to 3)</p>
+                  </div>
+
                   <div className="bubbleGrid">
                     {[
                       { value: "pizza", label: "🍕 Pizza" },
