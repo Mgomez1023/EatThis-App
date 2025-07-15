@@ -17,7 +17,7 @@
   --text: hsl(0 0% 5%);
   --text-muted: hsl(0 0% 30%);
 
-  --font: ""
+  --font: 'Franklin Gothic Medium', 'Arial Narrow', 'Arial', 'sans-serif';
 
   position: relative;
   width: 100%;
@@ -80,7 +80,6 @@
 }
 
 .titleText {
-  font-family:'Franklin Gothic Medium';
   font-size: 5vh;
   font-weight: bold;
   color: var(--orange);
@@ -161,7 +160,7 @@
 
 .infoText {
   color: orange;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: var(--font);
   font-size: 18px;
 }
 
@@ -416,7 +415,7 @@
 }
 
 .questionText {
-  font-family:'Franklin Gothic Medium';
+  font-family: var(--font);
   font-size: 4.25vh;
   font-weight: bold;
   color: rgb(255, 140, 0);
@@ -514,7 +513,7 @@
 
 .dropdown-drawer li {
   font-size: 18px;
-  font-family: 'Franklin Gothic Medium';
+  font-family: var(--font);
   color: orange;
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -651,8 +650,7 @@
 }
 
 .heading {
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 36px;
+  font-family: var(--font);
   font-weight: bold;
   color: darkblue;
   max-height: 50px;
@@ -673,7 +671,7 @@
   padding: 0;
   margin: 0 0 0 0;
   background: none;
-  width: 4vh
+  width: 4.5vh
 }
 
 .stepFormBackground {
@@ -963,7 +961,7 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem 3rem 0 3rem;
-  font-family:'Franklin Gothic-medium', 'Arial', Arial, sans-serif;
+  font-family: var(--font);
   font-size: 2.5vh;
   font-weight: 600;
   line-height: 1.75em;
