@@ -116,12 +116,12 @@ var [restaurants, setRestaurants] = useState([]);
                 <RestaurantList restaurants={restaurants} />
               )}
 
-              <div className="navButtonContainer">
-                <button className="navButton" onClick={() => navigate('/')}>
-                    Go Back
-                </button>
-              </div>  
             </div>
+            <div className="navButtonContainer">
+              <button className="navButton" onClick={() => navigate('/')}>
+                  Go Back
+              </button>
+            </div>  
         </div>
     </>
     )  
