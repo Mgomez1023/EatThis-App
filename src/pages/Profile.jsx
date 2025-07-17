@@ -161,7 +161,6 @@ const RestaurantProfile = () => {
 
 
                         <div className="hoursContainer">
-                            <p className="hour-label"> Hours </p>
 
                             <div className="hours-table">
                                 {restaurant.opening_hours?.periods ? (
