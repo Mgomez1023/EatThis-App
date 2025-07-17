@@ -99,14 +99,14 @@ const RestaurantProfile = () => {
             </div>
 
 
+            <div className="titleBox">
+
+                <p className="titleText"
+                >{restaurant.name}</p>
+
+            </div>
+
             <div className="mainProfile">
-
-                <div className="titleBox">
-
-                    <p className="titleText"
-                    >{restaurant.name}</p>
-
-                </div>
 
                 <div className="page-container">
                     <div className="profile-container">
