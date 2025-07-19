@@ -23,6 +23,7 @@ function Home() {
   var [selectedCravings, setSelectedCravings] = useState([]);
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
+  const [restaurants, setRestaurants] = useState([]);
 
   {/*STEP HANDLING */}
   const [step, setStep] = useState(0);
@@ -77,63 +78,151 @@ function Home() {
 
   const sliderRef = useRef();
   const min = 1000;
-  const max = 50000;
+  const max = 10000;
   
   const percent = ((radiusMeters - min) / (max - min)) * 100;
   
   const sliderStyle = {
   background: `linear-gradient(to right, var(--orange) ${percent}%, transparent ${percent}%)`
   };
-
-
-
-
-  {/*SUBMIT HANDLING */}
-  const handleSubmit = () => {
-  console.log("handleSubmit called");
-  const nearbyRestaurants = restaurants
-  .map(r => {
-    try {
-      if (!r.geometry || !r.geometry.location) {
-        console.warn('Invalid restaurant object:', r);
-        return null;
-      }
-
-      const { lat, lng } = r.geometry.location;
-      const distance = haversineDistance(location.lat, location.lng, lat, lng);
-      const category = inferFoodType(r.name);
-
-      console.log("selected", selectedCravings);
-
-
-      return { ...r, distance, category };
-    } catch (err) {
-      console.error('Error mapping restaurant:', err);
-      return null;
+  
+const fetchRestaurants = async (lat, lng, radiusMeters) => {
+  try {
+    const res = await fetch(`/api/places?lat=${lat}&lng=${lng}&radius=${radiusMeters}&keyword=food`);
+    
+    if (!res.ok) {
+      const errorText = await res.text(); // helpful for debugging
+      throw new Error(`API error ${res.status}: ${errorText}`);
     }
-  })
-      .filter(r => 
-        r && 
-        (!radiusMeters || r.distance <= radiusMeters) &&
-        (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) &&
-        (!selectedPriceLevel || r.price_level <= selectedPriceLevel)
-    )
+
+    const data = await res.json();
+    console.log("Detailed restaurants:", data.results);
+
+    setRestaurants(data.results); // update UI state
+    return data.results; // return for use in handleSubmit
+  } catch (err) {
+    console.error("Error fetching restaurants:", err);
+    setRestaurants([]); 
+    return []; 
+  }
+};
+
+  const handleSubmit = async () => {
+  console.log("handleSubmit called");
+  console.log("supposed user location: ", location.lat, location.lng);
+
+  try {
+    const fetchedRestaurants = await fetchRestaurants(location.lat, location.lng, radiusMeters);
+    console.log(fetchedRestaurants);
+    const nearbyRestaurants = fetchedRestaurants
+      .map(r => {
+        try {
+          if (!r.geometry || !r.geometry.location) {
+            console.warn('Invalid restaurant object:', r);
+            return null;
+          }
+
+          const { lat, lng } = r.geometry.location;
+          const distance = haversineDistance(location.lat, location.lng, lat, lng);
+          const category = inferFoodType(r.name);
+
+          console.log("Distance: ", distance);
+          console.log("Category: ", category);
+
+          return { ...r, distance, category };
+        } catch (err) {
+          console.error('Error mapping restaurant:', err);
+          return null;
+        }
+      })
+      .filter(r =>
+        r &&
+        
+          (!radiusMeters || r.distance <= radiusMeters) &&
+          (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) &&
+          (!selectedPriceLevel || r.price_level === selectedPriceLevel) 
+        )
       .sort((a, b) => a.distance - b.distance);
 
+    console.log("Nearby before navigate:", nearbyRestaurants);
+
+    localStorage.setItem('restaurants', JSON.stringify(nearbyRestaurants));
+    navigate('/results', {
+      state: {
+        radiusMeters,
+        location,
+        selectedCravings,
+        nearbyRestaurants
+      },
+    });
+
+    // Optional redirect to a specific restaurant page
+    // navigate(`/restaurant/${nearbyRestaurants[0].place_id}`, { state: { nearbyRestaurants } });
+
+  } catch (error) {
+    console.error("Error fetching restaurants:", error);
+    // Optionally show error to user
+  }
+};
 
 
-      console.log("Nearby before navigate:", nearbyRestaurants);
-      localStorage.setItem('restaurants', JSON.stringify(nearbyRestaurants));
-      navigate('/results', { 
-        state: {
-          radiusMeters,
-          location,
-          selectedCravings,
-          nearbyRestaurants
-        }, 
-      });
-      navigate(`/restaurant/${r.place_id}`, { state: { nearbyRestaurants } });
-  };
+
+
+
+
+
+
+  {/*       
+    
+    const handleSubmit = () => {
+    console.log("handleSubmit called");
+    const nearbyRestaurants = restaurants
+    .map(r => {
+      try {
+        if (!r.geometry || !r.geometry.location) {
+          console.warn('Invalid restaurant object:', r);
+          return null;
+        }
+  
+        const { lat, lng } = r.geometry.location;
+        const distance = haversineDistance(location.lat, location.lng, lat, lng);
+        const category = inferFoodType(r.name);
+  
+        console.log("selected", selectedCravings);
+  
+  
+        return { ...r, distance, category };
+      } catch (err) {
+        console.error('Error mapping restaurant:', err);
+        return null;
+      }
+    })
+        .filter(r => 
+          r && 
+          (!radiusMeters || r.distance <= radiusMeters) &&
+          (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) &&
+          (!selectedPriceLevel || r.price_level <= selectedPriceLevel)
+      )
+        .sort((a, b) => a.distance - b.distance);
+    
+    
+        {/*SUBMIT HANDLING 
+        
+        
+        
+        console.log("Nearby before navigate:", nearbyRestaurants);
+        localStorage.setItem('restaurants', JSON.stringify(nearbyRestaurants));
+        navigate('/results', { 
+          state: {
+            radiusMeters,
+            location,
+            selectedCravings,
+            nearbyRestaurants
+          }, 
+        });
+        navigate(`/restaurant/${r.place_id}`, { state: { nearbyRestaurants } });
+      };
+      */}
 
   {/* MAIN APP DESIGNING */}
 
@@ -151,7 +240,7 @@ function Home() {
                 textDecorationThickness: '4px',
                 }}
                 
-                onClick={handleClickyy}>
+                onClick={reset}>
                     <h1 className="titleText">EatThis</h1>
                 </button>
 
@@ -163,9 +252,7 @@ function Home() {
             </div>    
             <div className="dropdown-content">
                 <ul>
-                <li onClick={() => alert('Profile clicked')}>Profile</li>
-                <li onClick={() => alert('Settings clicked')}>Settings</li>
-                <li onClick={() => alert('Logout clicked')}>Logout</li>
+                <li onClick={toggle}>Dark Mode</li>
                 </ul>
             </div>
             </div>
@@ -181,7 +268,7 @@ function Home() {
                 textDecorationColor: 'orange',
                 textDecorationThickness: '4px',
             }}
-            onClick={toggle}
+            onClick={reset}
             >
 
               <img src={logoFull} className="logoFull" alt="React logo" />
@@ -373,7 +460,7 @@ function Home() {
                       style={sliderStyle}
                       onChange={(e) => setRadiusMeters(Number(e.target.value))} 
                       />
-                    <label className="radiusText" htmlFor="radius">{ (radiusMeters / 1000 * 0.621371).toFixed(0) } mi</label>
+                    <label className="radiusText" htmlFor="radius">{ radiusMeters} mi</label>
           
                     <div className="buttonContainer">
                       <button className="navButton" onClick={back}>Back</button>

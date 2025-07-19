@@ -6,14 +6,29 @@ import { FaArrowRight } from 'react-icons/fa';
 const RestaurantCard = ({ restaurant, index, restaurants,}) => {
   const navigate = useNavigate();
 
+
   const handleClick = () => {
-    navigate(`/profile/${restaurant.place_id}`, { 
-      state: { 
-        restaurant, 
-        restaurants,
-       }
-    });
+    const placeID = restaurant.place_id;
+    console.log("Navigating to profile with ID:", placeID);
+    navigate(`/Profile/${placeID}`);
   };
+
+  /*  
+  const handleClick = async () => {
+    try {
+      const placeID = restaurant.place_id;
+      console.log("Detils for ID: ", placeID);
+      const res = await fetch(`/api/placeDetails?placeId=${encodeURIComponent(placeID)}`);
+      if (!res.ok) throw new Error("Network response was not ok");
+      const data = await res.json();
+      console.log("details: ", data);
+      navigate(`/profile/${placeID}`);
+      console.log("restaurant Details: ", restaurantDetails);
+    } catch (err) {
+      console.error("Failed to fetch place details:", err);
+    }
+  };
+  */
 
   return (
     <div className="restaurantCard">
@@ -24,7 +39,7 @@ const RestaurantCard = ({ restaurant, index, restaurants,}) => {
 
           <div className="textGroup">
 
-            <h3 className="text">{index + 1}. {restaurant.name}</h3>
+            <h3 key={restaurant.place_id} className="text">{index + 1}. {restaurant.name}</h3>
             {restaurant.distance !== undefined && (
               <>
 
@@ -32,7 +47,7 @@ const RestaurantCard = ({ restaurant, index, restaurants,}) => {
                   textSize: '15px',
                   color: 'var(--orange)',
 
-                }}>Distance: {(restaurant.distance / 1000 * 0.621371).toFixed(2)} mi</p>
+                }}>Distance: { restaurant.distance } meters</p>
               
               </>
             )}

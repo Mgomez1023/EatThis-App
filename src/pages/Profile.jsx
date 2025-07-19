@@ -1,5 +1,5 @@
 import { useParams, useLocation } from 'react-router-dom';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formatTime } from '../utils/formatTime'
 import closeIcon from '../assets/close_icon.png';
@@ -11,13 +11,14 @@ import "slick-carousel/slick/slick-theme.css";
 import '../App.css';
 
 const RestaurantProfile = () => {
-    const { id } = useParams();
+    const { placeId } = useParams();
     const toggleMenu = () => setMenuOpen(!menuOpen)
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const restaurant = location.state?.restaurant;
     const restaurants = location.state?.restaurants;
+    const { restaurantDetails, setRestaurantDetails } = useState(null);
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -39,8 +40,23 @@ const RestaurantProfile = () => {
         document.body.classList.toggle("dark");
     } 
 
+    useEffect(() => {
+    const fetchDetails = async () => {
+      try {
+        const res = await fetch(`/api/placeDetails?placeId=${encodeURIComponent(placeId)}`);
+        if (!res.ok) throw new Error("Failed to fetch restaurant details.");
+        const data = await res.json();
+        setRestaurantDetails(data.result);
+      } catch (err) {
+        console.error("Error fetching restaurant details:", err);
+      }
+    };
+
+    if (placeId) { fetchDetails(); }
+    }, [placeId]);
+
     // Display loading state
-    if (!restaurant) return <p>Restaurant Data Not Found.</p>;
+    if (!restaurantDetails) return <p>Restaurant Data Not Found. {restaurantDetails} </p>;
 
     return (
         <>
@@ -68,9 +84,7 @@ const RestaurantProfile = () => {
             </div>    
             <div className="dropdown-content">
                 <ul>
-                <li onClick={() => alert('Profile clicked')}>Profile</li>
-                <li onClick={() => alert('Settings clicked')}>Settings</li>
-                <li onClick={() => alert('Logout clicked')}>Logout</li>
+                <li onClick={toggle}>Dark Mode</li>
                 </ul>
             </div>
             </div>
@@ -115,7 +129,7 @@ const RestaurantProfile = () => {
                             <div className="infoColumn">
                                 <div className="addressBox">
                                     <p className="infoText">Address:</p>
-                                    <p className="infoText">{restaurant.formatted_address}</p>
+                                    <p className="infoText">{restaurantDetails.formatted_address}</p>
                                     <p style={{
                                         fontWeight: '600',
                                         fontSize: '1.0rem'
@@ -159,50 +173,7 @@ const RestaurantProfile = () => {
 
                         </div>
 
-
-                        <div className="hoursContainer">
-
-                            <div className="hours-table">
-                                {restaurant.opening_hours?.periods ? (
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th className="textboi">Day</th>
-                                            <th className="textboi">Open</th>
-                                            <th className="textboi">Close</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {restaurant.opening_hours?.periods?.map((period, index) => {
-                                            const day = daysOfWeek[period.open.day];
-                                            const openTime = formatTime(period.open.time);
-                                            const closeTime = formatTime(period.close.time);
-
-                                            return (
-                                            <tr key={index}>
-                                                <td className="textboi">{day}</td>
-                                                <td className="textboi">{openTime}</td>
-                                                <td className="textboi">{closeTime}</td>
-
-                                            </tr>
-                                            );
-                                        })}
-                                        </tbody>
-                                    </table>
-
-                                ) : (
-                                    <p className="infoText">No Hours Provided</p>
-                                )}
-
-
-                            </div>
-                        </div>
-
-                        <div className="reviewsContainer">
-
-                            <ReviewCarousel reviews={(restaurant.reviews)} />
-
-                        </div>
+                        
                     </div>
 
 

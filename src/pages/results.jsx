@@ -37,6 +37,7 @@ var [restaurants, setRestaurants] = useState([]);
         const parsed = JSON.parse(stored);
         setRestaurants(parsed);
         console.log("Loaded from storage:", parsed);
+        console.log(radiusMeters);
         restaurants = parsed;
         console.log("restaurants: ", restaurants);
       } catch (error) {
@@ -76,9 +77,8 @@ var [restaurants, setRestaurants] = useState([]);
             </div>    
             <div className="dropdown-content">
                 <ul>
-                <li onClick={() => alert('Profile clicked')}>Profile</li>
-                <li onClick={() => alert('Settings clicked')}>Settings</li>
-                <li onClick={() => alert('Logout clicked')}>Logout</li>
+                <li onClick={toggle}>Dark Mode</li>
+
                 </ul>
             </div>
             </div>
