@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">EatThis</string>
+    <string name="title_activity_main">EatThis</string>
+    <string name="package_name">com.martin.eatthis</string>
+    <string name="custom_url_scheme">com.martin.eatthis</string>
+</resources>
