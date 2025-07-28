@@ -14,13 +14,12 @@
   align-content: center;
   max-height: 100%;
   width: 100%;
-  background-color: var(--bg);
 }
 
 .container {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 35vh;
+  height: 35vh;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -109,7 +108,7 @@
   font-size: 1rem;
   font-weight: 500;
   color: var(--orange);
-  text-shadow: 3px 5px 2px rgba(0,0,0,0.15);
+  text-shadow: 2px 0px 1px rgba(0,0,0,0.15);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap; /* Prevents text from wrapping */

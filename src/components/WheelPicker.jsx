@@ -92,11 +92,12 @@ export default function WheelPicker({ items = [] }) {
           </div>
 
         </div>
+        <div className="selected-item" style={{ marginTop: '30px', fontWeight: 'bold', fontSize: '1.2rem', color: 'var(--orange)' }}>
+          Selected:
           {selectedItem && (
-            <div className="selected-item" style={{ marginTop: '30px', fontWeight: 'bold', fontSize: '1.2rem', color: 'var(--orange)' }}>
-              Selected: {selectedItem.name}
-            </div>
+            selectedItem.name
           )}
+          </div>
       </div>
     </>
     

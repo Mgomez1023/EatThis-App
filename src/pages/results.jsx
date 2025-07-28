@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import RestaurantList from '../components/RestaurantList'
 import WheelPicker from '../components/WheelPicker.jsx'
 import '../App.css'
+import wheelIcon from '../assets/LuckyWheelTransparent.png'
 import closeIcon from '../assets/close_icon.png'
 import hamburgerImg from '../assets/hamburger_menu.png'
 import restaurantData from "../data/restaurants.json"
@@ -124,8 +125,12 @@ var [restaurants, setRestaurants] = useState([]);
             </div>
             <div className="navButtonContainer">
 
-              <button className="navButton" onClick={ toggleWheelMenu  /*() => navigate('/')*/ } >
+              <button className="navButton" onClick={ handleClickyy  /*() => navigate('/')*/ } >
                   Go Back
+              </button>
+
+              <button className="wheelIconButton" onClick={toggleWheelMenu} >
+                <img src={wheelIcon} className="wheelIcon" alt="Wheel Icon" />
               </button>
 
               <div className={`WheelPickerContainer ${wheelMenuOpen ? 'open' : ''}`}>  
