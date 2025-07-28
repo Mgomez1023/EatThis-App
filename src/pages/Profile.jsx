@@ -251,9 +251,9 @@ const RestaurantProfile = () => {
 
                                 <div className="medText" style={{
                                     alignContent: 'center',
-                                    fontSize: '20px',
+                                    fontSize: '16px',
                                 }}>Overall: {restaurantDetails.rating}
-                                    <div>Total Reviews: {restaurantDetails.user_ratings_total}</div>
+                                    <div>Total: {restaurantDetails.user_ratings_total}</div>
                                 </div>
 
                         </div>
