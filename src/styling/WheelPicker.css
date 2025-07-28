@@ -106,9 +106,9 @@
 
 .container .wheel .number span {
   position: absolute;
-  left: 50%; /* Move text closer to center */
-  top: 37%;  /* Adjust vertically if needed */
-  transform: rotate(69deg);
+  left: 45%; /* Move text closer to center */
+  top: 40%;  /* Adjust vertically if needed */
+  transform: rotate(62deg);
   font-size: 0.90rem;
   font-weight: 500;
   color: var(--orange);

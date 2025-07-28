@@ -22,7 +22,7 @@ export default function WheelPicker({ items = [] }) {
       setIsSpinning(false);
 
       const totalRotation = (rotation + finalRotation) % 360;
-      const pointerOffest = 28;
+      const pointerOffest = 20;
       let selectedIndex = Math.round((360 - totalRotation + pointerOffest) / degreesPerItem) % items.length;
 
       if (selectedIndex < 0) selectedIndex += items.length;
