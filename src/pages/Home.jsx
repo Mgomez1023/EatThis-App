@@ -139,7 +139,7 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
         r &&
         
           (!radiusMeters || r.distance <= radiusMeters) &&
-          (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) &&
+          (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) || r.category === "other" &&
           (!selectedPriceLevel || r.price_level <= selectedPriceLevel) 
         )
       .sort((a, b) => a.distance - b.distance);
