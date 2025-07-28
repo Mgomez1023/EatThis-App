@@ -696,12 +696,6 @@
   cursor: pointer;
 }
 
-.restaurantButton:hover {
-  border: 3px solid var(--bg);
-  background-color: var(--orange);
-  color: var(--bg-light);
-}
-
 .buttonContent {
   display: flex;
   justify-content: space-between;

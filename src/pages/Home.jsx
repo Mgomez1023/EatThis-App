@@ -1,17 +1,16 @@
-import { useRef, useState, useEffect } from 'react'
-import React from 'react'
- import {motion, AnimatePresence} from 'framer-motion'
+import { useRef, useState } from 'react'
+import {motion, AnimatePresence} from 'framer-motion'
 import { useGeolocation } from '/src/utils/useGeolocation.js'
-import { useNavigate, Routes, Route } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { haversineDistance } from '/src/utils/haversineDistance.js'
 import { inferFoodType } from '/src/utils/inferFoodType.js'
-import restaurants from '/src/data/restaurants.json' // Assuming you have a JSON file with restaurant data
 import closeIcon from '/src/assets/close_icon.png'
 import hamburgerImg from '/src/assets/hamburger_menu.png'
 import burgerLogo from '/src/assets/burger_orange.png'
 import logoFull from '/src/assets/logo-full.png'
 import '/src/App.css'
 import '../index.css'
+import restaurants from '/src/data/restaurants.json' // Assuming you have a JSON file with restaurant data
  
 
 function Home() {
