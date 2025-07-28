@@ -587,7 +587,7 @@
   border: 3px solid var(--orange);
   border-radius: 10px;
   background-color: var(--bg-light);
-  transition: orange 0.5s ease;
+  transition: all 0.2s ease;
 
   background: var(--gradient);
   box-shadow: var(--shadow);
@@ -599,6 +599,13 @@
   height: 50px;
   width: 80%;
 }
+
+.navButton:hover {
+  border: 3px solid var(--bg);
+  background: var(--orange);
+  color: var(--bg-light);
+}
+
 
 .introTextContainer {
   margin: 5rem 0;
@@ -681,13 +688,18 @@
 
 .restaurantButton {
   background: none;
-  color: var(--orange);
   width: 100%;
+  color: var(--orange);
   text-align: left;
   padding: 1rem 1rem;
   font-size: 100%;
   cursor: pointer;
+}
 
+.restaurantButton:hover {
+  border: 3px solid var(--bg);
+  background-color: var(--orange);
+  color: var(--bg-light);
 }
 
 .buttonContent {
@@ -1207,6 +1219,12 @@
   height: 50px;
   color: var(--orange);
   font-size: 105%;
+}
+
+.wheelIconButton:hover {
+  border: 3px solid var(--bg);
+  background: orange;
+  color: var(--bg-light);
 }
 
 

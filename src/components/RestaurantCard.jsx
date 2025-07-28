@@ -60,7 +60,7 @@ const RestaurantCard = ({ restaurant, index, restaurants,}) => {
                   textSize: '15px',
                   color: 'var(--orange)',
 
-                }}>Distance: { (restaurant.distance / 1609.34).toFixed(1) } miles away</p>
+                }}>Distance: { (restaurant.distance / 1609.34).toFixed(1) } mi</p>
 
                 <p className="text" style={{
                   textSize: '15px',
