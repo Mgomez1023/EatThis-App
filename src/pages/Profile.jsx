@@ -5,6 +5,7 @@ import { formatTime } from '../utils/formatTime'
 import { haversineDistance } from '/src/utils/haversineDistance.js'
 import { inferFoodType } from '/src/utils/inferFoodType.js'
 import { Sun, SunDim } from 'lucide-react'
+
 import closeIcon from '../assets/close_icon.png';
 import hamburgerImg from '../assets/hamburger_menu.png';
 import logoFull from '../assets/logo-full.png';

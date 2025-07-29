@@ -26,6 +26,9 @@ const brandMap = {
   "crumbl cookies": "dessert",
   "culver’s": "burgers",
   "del taco": "mexican",
+  "dairy queen": "dessert",
+  "del carmen": "mexican",
+  "denny’s": "burgers",
   "domino’s": "pizza",
   "dunkin": "cafe",
   "dutch bros": "cafe",
@@ -102,67 +105,20 @@ const brandMap = {
 };
 
 const keywordMap = {
-  burgers: [
-    "burger", "burgers", "flame", "patty", "shack", "bar", "bun", "sizzle",
-    "stack", "beef", "diner", "joint", "smash", "blaze", "bite"
-  ],
-  mexican: [
-    "taco", "tacos", "taqueria", "cantina", "grill", "casa", "cocina", "burrito", "fiesta",
-    "loco", "el", "salsa", "agave", "jalapeño", "pollo", "azteca", "mexican", "mex"
-  ],
-  chicken: [
-    "chicken", "wing", "wings", "fried", "coop", "cluck", "hen", "shack", "roost",
-    "tenders", "bucket", "broast", "yard", "crispy", "feather", "clucker"
-  ],
-  pizza: [
-    "pizza", "pizzeria", "slice", "oven", "crust", "brick",
-    "hut", "papa", "dough", "wood", "pepperoni", "margherita"
-  ],
-  sandwiches: [
-    "deli", "subs", "sandwich", "sub", "hoagie", "bagel", "panini", "grinder",
-    "hero", "roll", "express", "kitchen", "bistro", "works"
-  ],
-  cafe: [
-    "coffee", "coffee bar", "café", "bean", "espresso", "roasters", "latte", "grind",
-    "java", "cup", "grounds", "mug", "barista", "roast"
-  ],
-  bakery: [
-    "bakery", "bagel", "pastry", "donut", "cookie", "cake", "scone", "bakehouse",
-    "bread", "croissant", "cupcake", "doughnut", "artisan", "muffin", "sweet"
-  ],
-  dessert: [
-    "cream", "scoop", "sweet", "ice", "cone", "cookie", "donut", "cake",
-    "shake", "creamery", "sugar", "swirl", "parlor", "frost", "bliss"
-  ],
-  chinese: [
-    "wok", "dragon", "palace", "panda", "express", "bamboo", "dynasty",
-    "jade", "golden", "king", "lotus", "china", "imperial", "noodle", "rice",
-    "korean", "kimchi", "bibimbap", "bulgogi", "soju", "banchan", "galbi", "gochujang",
-    "kbbq", "mandu", "jjigae", "dak", "samgyeopsal", "sundubu", "gimbap"
-  ],
-  indian: [
-    "indian", "curry", "tandoor", "masala", "naan", "biriyani", "chaat", "dal",
-    "roti", "spice", "vindaloo", "korma", "paneer", "thali", "dosai", "pita", "gyro", "kebab", "kebab", "taverna", "olive", "grill", "falafel", "mezze",
-    "shawarma", "souvlaki", "baklava", "zeus", "greek", "baba", "tzatziki"
-  ],
-  bbq: [
-    "bbq", "barbecue", "smokehouse", "pit", "smoked", "ribs", "grill", "brisket",
-    "rub", "wood", "fire", "char", "sauce", "slow", "oak"
-  ],
-  seafood: [
-    "seafood", "oyster", "shrimp", "crab", "fish", "lobster", "clam", "grill",
-    "dock", "net", "tide", "bay", "shells", "marina", "reef"
-  ],
-  hotdogs: [
-    "dog", "dogs", "hot", "wiener", "frank", "sausage", "bun", "stand",
-    "cart", "grill", "coney", "chicago", "corner", "shack", "king"
-  ],
-  italian: [
-    "pasta", "lasagna", "spaghetti", "ravioli", "gnocchi", "focaccia",
-    "bolognese", "parmigiana", "risotto", "carbonara", "alfredo", "tiramisu",
-    "trattoria", "osteria", "ristorante", "cucina", "italian", "napoli", "roma",
-    "toscana", "bella", "amore", "nonna", "da", "il", "la", "vino", "bruschetta"
-  ]
+  pizza: ["pizza", "pizzeria", "slice", "crust", "pepperoni", "margherita", "dough", "oven"],
+  chicken: ["chicken", "wing", "tenders", "broast", "cluck"],
+  burgers: ["burger", "patty", "shack", "stack"],
+  mexican: ["taco", "burrito", "cantina", "taqueria", "salsa", "loco", "el", "pollo", "cocina"],
+  asian: ["panda", "wok", "noodle", "kimchi", "bibimbap", "ramen", "pho", "teriyaki", "dumpling"],
+  sandwiches: ["sub", "deli", "sandwich", "hoagie", "bagel", "panini", "hero", "grinder"],
+  bbq: ["bbq", "barbecue", "brisket", "smoke", "pit", "ribs", "rub"],
+  hotdogs: ["hotdog", "wiener", "frank", "stand"],
+  seafood: ["shrimp", "crab", "lobster", "clam", "oyster"],
+  italian: ["pasta", "lasagna", "spaghetti", "ravioli", "gnocchi", "risotto", "cucina", "focaccia"],
+  indian: ["curry", "tandoor", "masala", "naan", "biriyani", "paneer", "dal", "vindaloo"],
+  dessert: ["ice cream", "donut", "cookie", "cake", "sundae", "sweet", "frost", "scoop"],
+  bakery: ["bakery", "pastry", "muffin", "croissant", "bakehouse", "bread", "cupcake"],
+  cafe: ["coffee", "espresso", "latte", "café", "java", "roast", "bean", "brew"]
 };
 
 

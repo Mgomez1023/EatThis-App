@@ -5,6 +5,7 @@ import { Sun, SunDim } from 'lucide-react'
 import RestaurantList from '../components/RestaurantList'
 import WheelPicker from '../components/WheelPicker.jsx'
 import '../App.css'
+
 import wheelIcon from '../assets/LuckyWheelTransparent.png'
 import closeIcon from '../assets/close_icon.png'
 import hamburgerImg from '../assets/hamburger_menu.png'

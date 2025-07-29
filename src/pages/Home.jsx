@@ -24,7 +24,7 @@ function Home() {
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
-  const [theme, setTheme] = useState('light'); // Default theme
+  const [theme, setTheme] = useState('dark'); // Default theme
 
 
   {/*STEP HANDLING */}
@@ -106,7 +106,6 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
     }
 
     const data = await res.json();
-    console.log("Detailed restaurants:", data.results);
 
     setRestaurants(data.results); // update UI state
     return data.results; // return for use in handleSubmit
@@ -117,13 +116,26 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
   }
 };
 
-  const handleSubmit = async () => {
+const fetchRestaurantDetails = async (lat, lng, restaurantName) => {
+  const res = await fetch(`/api/getRestaurantDetails?lat=${lat}&lng=${lng}&restaurantName=${encodeURIComponent(restaurantName)}`);
+  const data = await res.json();
+
+  return data;
+};
+
+
+const handleSubmit = async () => {
   console.log("handleSubmit called");
   console.log("supposed user location: ", location.lat, location.lng);
 
   try {
     const fetchedRestaurants = await fetchRestaurants(location.lat, location.lng, radiusMeters);
-    console.log(fetchedRestaurants);
+    console.log("fetchedRestaurants", fetchedRestaurants);
+
+    const details = await fetchRestaurantDetails(location.lat, location.lng, fetchedRestaurants[0].name);
+    console.log("EXTRA DETAIL SHI: ", JSON.stringify(details));
+
+
     const nearbyRestaurants = fetchedRestaurants
       .map(r => {
         try {
@@ -135,8 +147,6 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
           const { lat, lng } = r.geometry.location;
           const distance = haversineDistance(location.lat, location.lng, lat, lng);
           const category = inferFoodType(r.name);
-
-          console.log("Category: ", category, "Distance: ", distance, "Name: ", r.name);
 
           return { ...r, distance, category };
         } catch (err) {
@@ -152,8 +162,6 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
           (!selectedPriceLevel || r.price_level <= selectedPriceLevel) 
         )
       .sort((a, b) => a.distance - b.distance);
-
-    console.log("Nearby before navigate:", nearbyRestaurants);
 
     localStorage.setItem('restaurants', JSON.stringify(nearbyRestaurants));
     navigate('/results', {
