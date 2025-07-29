@@ -1134,7 +1134,7 @@
 .home-content {
   padding-bottom: 1px;
   width: 90%;
-  max-height: 95%;
+  height: 90%;
   margin-left: auto;
   margin-right: auto;
   border: var(--border-card);
