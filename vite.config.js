@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [react(), tailwindcss,
     VitePWA({
         registerType: 'autoUpdate',
+        workbox: {
+          maximumFileSizeToCacheInBytes: 6 * 1024 * 1024 // 6 MB
+        },
         manifest: {
           name: 'EatThis App',
           short_name: 'EatThis',
