@@ -839,8 +839,7 @@
   width: 90%;
   height: 10%;
   min-height: 75px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   padding: 0 2rem 0rem 2rem;
   background-color: var(--bg-dark);
 }
