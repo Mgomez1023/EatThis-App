@@ -12,7 +12,7 @@ export default defineConfig({
           maximumFileSizeToCacheInBytes: 6 * 1024 * 1024 // 6 MB
         },
         manifest: {
-          name: 'EatThis App',
+          name: 'EatThis',
           short_name: 'EatThis',
           start_url: '/',
           display: 'standalone',
