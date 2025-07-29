@@ -4,6 +4,7 @@ import { useGeolocation } from '/src/utils/useGeolocation.js'
 import { useNavigate} from 'react-router-dom'
 import { haversineDistance } from '/src/utils/haversineDistance.js'
 import { inferFoodType } from '/src/utils/inferFoodType.js'
+import { Sun, SunDim } from 'lucide-react'
 import closeIcon from '/src/assets/close_icon.png'
 import hamburgerImg from '/src/assets/hamburger_menu.png'
 import burgerLogo from '/src/assets/burger_orange.png'
@@ -23,6 +24,7 @@ function Home() {
   const [selectedPriceLevel, setSelectedPriceLevel] = useState(null);
   const navigate = useNavigate();
   const [restaurants, setRestaurants] = useState([]);
+  const [theme, setTheme] = useState('light'); // Default theme
 
 
   {/*STEP HANDLING */}
@@ -73,7 +75,15 @@ function Home() {
   } ;
 
   const toggle = () => {
-    document.body.classList.toggle("dark");
+    if (document.body.classList.contains("dark")) {
+      document.body.classList.remove("dark");
+      document.body.classList.add("light");
+      setTheme('light');
+  } else {
+      document.body.classList.remove("light");
+      document.body.classList.add("dark");
+      setTheme('dark');
+  }
   }
 
   const sliderRef = useRef();
@@ -275,13 +285,9 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
             </button>
 
 
-            <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
-                <img src={hamburgerImg} className="MenuImg" alt="React logo" />
+            <button className="hamburger-btn" onClick={toggle} aria-label="Profile"> 
+              {theme === 'light' ? <Sun color="rgb(255, 140, 0)" size="{48}"/> : <SunDim color="rgb(255, 140, 0)" size="{48}" /> }
             </button>
-
-
-
-
 
             </div>
 
