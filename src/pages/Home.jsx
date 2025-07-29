@@ -135,10 +135,10 @@ const handleSubmit = async () => {
   try {
     const fetchedRestaurants = await fetchRestaurants(location.lat, location.lng, radiusMeters);
     console.log("fetchedRestaurants", fetchedRestaurants);
-    console.log("fetchedRestaurant name: ", fetchedRestaurants[0].name);
+    console.log("fetchedRestaurant name: ", fetchedRestaurants[4].name);
 
-    console.log("Fetching details for:", location.lat, location.lng, fetchedRestaurants[0].name);
-    const details = await fetchRestaurantDetails(location.lat, location.lng, fetchedRestaurants[0].name);
+    console.log("Fetching details for:", location.lat, location.lng, fetchedRestaurants[4].name);
+    const details = await fetchRestaurantDetails(location.lat, location.lng, fetchedRestaurants[4].name);
     console.log("EXTRA DETAIL SHI: ", JSON.stringify(details));
 
 
