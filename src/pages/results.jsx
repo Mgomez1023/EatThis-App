@@ -82,7 +82,7 @@ function results() {
                 }}
                 
                 onClick={handleClickyy}>
-                    <h1 className="titleText">EatThis</h1>
+                <h1 className="titleText">EatThis</h1>
                 </button>
 
                 <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
@@ -117,6 +117,9 @@ function results() {
 
             </button>
 
+            <button className="hamburger-btn" onClick={toggle} aria-label="Profile"> 
+              {theme === 'light' ? <Sun color="rgb(255, 140, 0)" size="{48}"/> : <SunDim color="rgb(255, 140, 0)" size="{48}" /> }
+            </button>
 
             </div>
         
