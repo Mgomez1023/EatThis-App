@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { Sun, SunDim } from 'lucide-react'
 import RestaurantList from '../components/RestaurantList'
 import WheelPicker from '../components/WheelPicker.jsx'
 import '../App.css'
@@ -10,30 +11,39 @@ import hamburgerImg from '../assets/hamburger_menu.png'
 import restaurantData from "../data/restaurants.json"
 import logoFull from "../assets/logo-full.png"
 
-
 function results() {
 
-const toggleMenu = () => setMenuOpen(!menuOpen)
-const [menuOpen, setMenuOpen] = useState(false)
+  const toggleMenu = () => setMenuOpen(!menuOpen)
+  const [menuOpen, setMenuOpen] = useState(false)
 
-const toggleWheelMenu = () => setWheelMenuOpen(!wheelMenuOpen)
-const [wheelMenuOpen, setWheelMenuOpen] = useState(false)
+  const toggleWheelMenu = () => setWheelMenuOpen(!wheelMenuOpen)
+  const [wheelMenuOpen, setWheelMenuOpen] = useState(false)
 
-const navigate = useNavigate();
-const names = restaurantData.map((restaurants) => restaurants.name);
-const [setNames] = useState([]);
-const locationState = useLocation();
-const { radiusMeters, location, craving} = locationState.state || {};
-const nearbyRestaurants = locationState.state?.nearbyRestaurants || [] || restaurants;
-var [restaurants, setRestaurants] = useState([]);
+  const navigate = useNavigate();
+  const names = restaurantData.map((restaurants) => restaurants.name);
+  const [setNames] = useState([]);
+  const locationState = useLocation();
+  const { radiusMeters, location, craving} = locationState.state || {};
+  const nearbyRestaurants = locationState.state?.nearbyRestaurants || [] || restaurants;
+  var [restaurants, setRestaurants] = useState([]);
+  const [theme, setTheme] = useState('light'); // Default theme
+
 
   const handleClickyy = () => {
       navigate("/");
   };
 
-  const toggle = () => {
-  document.body.classList.toggle("dark");
-  } 
+   const toggle = () => {
+      if (document.body.classList.contains("dark")) {
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+        setTheme('light');
+    } else {
+        document.body.classList.remove("light");
+        document.body.classList.add("dark");
+        setTheme('dark');
+    }
+  }
 
 
  useEffect(() => {
@@ -107,9 +117,7 @@ var [restaurants, setRestaurants] = useState([]);
 
             </button>
 
-            <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
-                <img src={hamburgerImg} className="MenuImg" alt="React logo" />
-            </button>
+
             </div>
         
 

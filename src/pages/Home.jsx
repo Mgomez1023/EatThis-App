@@ -75,15 +75,15 @@ function Home() {
   } ;
 
   const toggle = () => {
-    if (document.body.classList.contains("dark")) {
-      document.body.classList.remove("dark");
-      document.body.classList.add("light");
-      setTheme('light');
-  } else {
-      document.body.classList.remove("light");
-      document.body.classList.add("dark");
-      setTheme('dark');
-  }
+      if (document.body.classList.contains("dark")) {
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+        setTheme('light');
+    } else {
+        document.body.classList.remove("light");
+        document.body.classList.add("dark");
+        setTheme('dark');
+    }
   }
 
   const sliderRef = useRef();

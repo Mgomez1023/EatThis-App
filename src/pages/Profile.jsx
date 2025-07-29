@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { formatTime } from '../utils/formatTime'
 import { haversineDistance } from '/src/utils/haversineDistance.js'
 import { inferFoodType } from '/src/utils/inferFoodType.js'
+import { Sun, SunDim } from 'lucide-react'
 import closeIcon from '../assets/close_icon.png';
 import hamburgerImg from '../assets/hamburger_menu.png';
 import logoFull from '../assets/logo-full.png';
@@ -21,6 +22,7 @@ const RestaurantProfile = () => {
     const restaurant = location.state?.restaurant;
     const restaurants = location.state?.restaurants;
     const [ restaurantDetails, setRestaurantDetails ] = useState(null);
+    const [theme, setTheme] = useState('light'); // Default theme
     var data;
 
     const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -39,9 +41,17 @@ const RestaurantProfile = () => {
         navigate("/");
     };
 
-    const toggle = () => {
-        document.body.classList.toggle("dark");
-    } 
+   const toggle = () => {
+      if (document.body.classList.contains("dark")) {
+        document.body.classList.remove("dark");
+        document.body.classList.add("light");
+        setTheme('light');
+    } else {
+        document.body.classList.remove("light");
+        document.body.classList.add("dark");
+        setTheme('dark');
+    }
+  }
 
     const capitalizeWords = (str) => {
     if (!str) return '';
@@ -131,9 +141,10 @@ const RestaurantProfile = () => {
 
             </button>
 
-            <button className="hamburger-btn" onClick={toggleMenu} aria-label="Profile"> 
-                <img src={hamburgerImg} className="MenuImg" alt="React logo" />
+            <button className="hamburger-btn" onClick={toggle} aria-label="Profile"> 
+              {theme === 'light' ? <Sun color="rgb(255, 140, 0)" size="{48}"/> : <SunDim color="rgb(255, 140, 0)" size="{48}" /> }
             </button>
+
             </div>
 
 
