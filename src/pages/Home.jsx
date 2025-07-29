@@ -116,11 +116,15 @@ const fetchRestaurants = async (lat, lng, radiusMeters) => {
   }
 };
 
-const fetchRestaurantDetails = async (lat, lng, restaurantName) => {
-  const res = await fetch(`/api/getRestaurantDetails?lat=${lat}&lng=${lng}&restaurantName=${encodeURIComponent(restaurantName)}`);
-  const data = await res.json();
-
-  return data;
+const fetchRestaurantDetails = async (lat, lng, name) => {
+  try {
+    const res = await fetch(`/api/getRestaurantDetails?lat=${lat}&lng=${lng}&restaurantName=${encodeURIComponent(name)}`);
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error fetching restaurant details:", err);
+    return null;
+  }
 };
 
 
@@ -133,7 +137,8 @@ const handleSubmit = async () => {
     console.log("fetchedRestaurants", fetchedRestaurants);
     console.log("fetchedRestaurant name: ", fetchedRestaurants[0].name);
 
-    const details = await fetchRestaurantDetails(location.lat, location.lng, fetchRestaurants[0].name);
+    console.log("Fetching details for:", location.lat, location.lng, fetchedRestaurants[0].name);
+    const details = await fetchRestaurantDetails(location.lat, location.lng, fetchedRestaurants[0].name);
     console.log("EXTRA DETAIL SHI: ", JSON.stringify(details));
 
 
