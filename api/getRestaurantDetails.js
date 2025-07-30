@@ -3,10 +3,12 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.FOURSQUARE;
   const fsqKey = process.env.FSQ_PLACE;
+  const EatThis = process.env.EatThis;
 
   console.log("FOURSQUARE_API_KEY:", apiKey);
   console.log("process.env: ", process.env.FOURSQUARE);
   console.log("process.env.FSQ_PLACE:", fsqKey);
+  console.log("process.env.EatThis:", EatThis);
 
   const apiUrl = `https://places-api.foursquare.com/places/search?ll=${lat},${lng}&query=${encodeURIComponent(restaurantName)}&limit=1`;
   const testUrl = `https://places-api.foursquare.com/places/search?ll=40.7484,-73.9857&query=Starbucks&limit=1`
@@ -15,13 +17,13 @@ export default async function handler(req, res) {
     method: 'GET',
     headers: {
       Accept: 'application/json',
-      Authorization: fsqKey,
+      Authorization: EatThis,
       'X-Places-Api-Version' : '2025-06-17'
     },
   }
 
   try {
-    const response = await fetch(testUrl, options);
+    const response = await fetch(apiUrl, options);
 
     const data = await response.json();
 
