@@ -139,8 +139,8 @@ const handleSubmit = async () => {
 
     console.log("Fetching details for:", location.lat, location.lng, fetchedRestaurants[4].name);
     const details = await fetchRestaurantDetails(location.lat, location.lng, fetchedRestaurants[4].name);
-    console.log("EXTRA DETAIL SHI: ", JSON.stringify(details));
-
+    const results = JSON.stringify(details, null, 2);
+    console.log("Fetched details:", results);
 
     const nearbyRestaurants = fetchedRestaurants
       .map(r => {
