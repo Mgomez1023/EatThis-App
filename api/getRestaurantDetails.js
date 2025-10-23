@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     method: 'GET',
     headers: {
       Accept: 'application/json',
-      Authorization: EatThis,
+      Authorization: apiKey,
       'X-Places-Api-Version' : '2025-06-17'
     },
   }

@@ -135,12 +135,13 @@ const handleSubmit = async () => {
   try {
     const fetchedRestaurants = await fetchRestaurants(location.lat, location.lng, radiusMeters);
     console.log("fetchedRestaurants", fetchedRestaurants);
-    console.log("fetchedRestaurant name: ", fetchedRestaurants[4].name);
 
+    /*
     console.log("Fetching details for:", location.lat, location.lng, fetchedRestaurants[4].name);
     const details = await fetchRestaurantDetails(location.lat, location.lng, fetchedRestaurants[4].name);
     const results = JSON.stringify(details, null, 2);
     console.log("Fetched details:", results);
+    */
 
     const nearbyRestaurants = fetchedRestaurants
       .map(r => {
@@ -152,7 +153,7 @@ const handleSubmit = async () => {
 
           const { lat, lng } = r.geometry.location;
           const distance = haversineDistance(location.lat, location.lng, lat, lng);
-          const category = inferFoodType(r.name);
+          const category = [inferFoodType(r.name), "any"];
 
           return { ...r, distance, category };
         } catch (err) {
@@ -164,8 +165,8 @@ const handleSubmit = async () => {
         r &&
         
           (!radiusMeters || r.distance <= radiusMeters) &&
-          (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) || r.category === "other" &&
-          (!selectedPriceLevel || r.price_level <= selectedPriceLevel) 
+          (selectedCravings.length === 0 || selectedCravings.includes("any") || selectedCravings.includes(r.category)) &&
+          (!selectedPriceLevel || r.price_level === selectedPriceLevel) 
         )
       .sort((a, b) => a.distance - b.distance);
 
@@ -268,7 +269,7 @@ const handleSubmit = async () => {
                 </button>
 
                 <button className="close-btn" onClick={toggleMenu} aria-label="Close Menu"> 
-                <img src={closeIcon} className="closeImg" alt="React logo" />
+                  <img src={closeIcon} className="closeImg" alt="React logo" />
                 </button>
 
 
