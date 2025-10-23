@@ -1018,7 +1018,7 @@
   height: 100%;
   border-radius: 50%;
   border: 16px solid none;
-  border-top: 20px solid var(--orange);
+  border-top: 15px solid var(--orange);
   animation: rotateRing 2.5s linear infinite;
   box-shadow:
     0px 0 0px 0px rgba(212, 156, 51, 0.5);  /* large soft outer glow */
